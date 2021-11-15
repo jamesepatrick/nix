@@ -31,7 +31,7 @@ format:
 
 partition:
 	$(info partition drive into boot & luks partition)
-	sgdisk -n 0:0:+300MiB -t 0:ea00 -c 0:boot  "$(DRIVE)"
+	sgdisk -n 0:0:+300MiB -t 0:ef00 -c 0:boot  "$(DRIVE)"
 	sgdisk -n 0:0:0       -t 0:8300 -c 0:crypt "$(DRIVE)"
 	partprobe "$(DRIVE)" >/dev/null || true
 
