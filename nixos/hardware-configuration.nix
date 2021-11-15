@@ -12,6 +12,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = ["zfs"];
 
   boot.initrd.luks.devices."crypt" = 
     { device = "/dev/disk/by-partlabel/crypt";
