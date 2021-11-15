@@ -8,10 +8,15 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" "cryptd" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+
+  boot.initrd.luks.devices."crypt" = 
+    { device = "/dev/disk/by-partlabel/crypt";
+      preLVM = true;
+    };
 
   fileSystems."/" =
     { device = "rpool/root/nixos";
@@ -24,12 +29,12 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/46C8-4779";
+    { device = "/dev/disk/by-partlabel/boot";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/2162f142-e124-4aeb-aece-79f1648148cd"; }
+    [ { device = "/dev/partitions/swap"; }
     ];
 
 }
