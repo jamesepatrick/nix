@@ -52,7 +52,8 @@ configure_luks:
 	echo $(PASSPHRASE) | cryptsetup luksAddKey \
 	    /dev/disk/by-partlabel/crypt \
 	    --key-file /tmp/keyfile
-	cryptsetup luksOpen /dev/disk/by-partlabel/crypt root
+	echo $(PASSPHRASE) | cryptsetup luksOpen \
+		/dev/disk/by-partlabel/crypt root
 	cryptsetup luksRemoveKey /dev/disk/by-partlabel/crypt /tmp/keyfile
 
 configure_lvm:
