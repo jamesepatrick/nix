@@ -97,6 +97,7 @@ mount:
 nix_install:
 	nixos-generate-config --root /mnt
 	cp -i nixos/* /mnt/etc/nixos/
+	nixos-install
 
 
 install: |  format \
