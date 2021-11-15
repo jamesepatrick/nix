@@ -17,7 +17,7 @@
 
   # This is required for the zfs module as well. Must be unique. Run the following
   #   head -c4  /dev/urandom | od -A none -t x4
-  netowkring.hostId = "a7a1c3f5";
+  networking.hostId = "a7a1c3f5";
   networking.hostName = "nil"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
