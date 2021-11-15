@@ -1,0 +1,5 @@
+Install requirements
+
+- git 
+- make
+
