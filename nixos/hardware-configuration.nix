@@ -19,6 +19,13 @@
     "cryptd"
    ];
 
+  # Wifi support
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
+  hardware.firmware = [ pkgs.rtw89-firmware ];
+
+  # For support of newer AMD GPUs, backlight and internal microphone
+  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.13") pkgs.linuxPackages_latest;
+
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
