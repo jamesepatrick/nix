@@ -47,3 +47,12 @@ sudo make nix_install
 - Document setting the `networking.hostId` variable.
 - Use [NixOS Hardware](https://github.com/NixOS/nixos-hardware) Modules.
 - Fix wireless driver issue :: This uses the Realtek 8852AE 802.11AX WWAN.
+
+## References
+
+- [Installing NixOS with encrypted ZFS on a netcup.de root server](https://florianfranke.dev/posts/2020/03/installing-nixos-with-encrypted-zfs-on-a-netcup.de-root-server/)
+- [NixOS on Framework laptop](http://kvark.github.io/linux/framework/2021/10/17/framework-nixos.html)
+- [NixOS with ZFS on LUKS](https://gist.github.com/ixmatus/7dcd56c8e878e8d98ee6d266f7949d11)
+- [Yubikey based Full Disk Encryption (FDE) on NixOS](<https://nixos.wiki/wiki/Yubikey_based_Full_Disk_Encryption_(FDE)_on_NixOS>)
+- [LUKS-Encrypted Filesystem with Yubikey PBA](https://github.com/sgillespie/nixos-yubikey-luks)
+- [Encrypted /boot on ZFS with NixOS](https://elvishjerricco.github.io/2018/12/06/encrypted-boot-on-zfs-with-nixos.html)
