@@ -20,7 +20,6 @@
    ];
 
   # Wifi support
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
   hardware.firmware = [ pkgs.rtw89-firmware ];
 
   # For support of newer AMD GPUs, backlight and internal microphone
@@ -28,7 +27,7 @@
 
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
   boot.supportedFilesystems = ["zfs"];
 
   boot.initrd.luks.devices."crypt" = 

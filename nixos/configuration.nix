@@ -20,10 +20,14 @@
   #   head -c4  /dev/urandom | od -A none -t x4
   networking.hostId = "a7a1c3f5";
   networking.hostName = "nil"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless = {
+    enable = true;  # Enables wireless support via wpa_supplicant.
+    interfaces = ["wlp3s0"];  # Enables wireless support via wpa_supplicant.
+    userControlled.enable = true;
+  };
 
   # Set your time zone.
-  time.timeZone = "America/NewYork";
+  time.timeZone = "America/New_York";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -31,6 +35,7 @@
   networking.useDHCP = false;
   networking.interfaces.enp2s0f0.useDHCP = true;
   networking.interfaces.enp5s0.useDHCP = true;
+  networking.interfaces.wlp3s0.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -105,4 +110,3 @@
   system.stateVersion = "21.05"; # Did you read the comment?
 
 }
-
