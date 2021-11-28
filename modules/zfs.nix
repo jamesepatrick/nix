@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-{
-
+{ config, pkgs, ... }: {
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs = {

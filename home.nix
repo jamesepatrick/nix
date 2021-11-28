@@ -11,15 +11,7 @@
     wrapperFeatures.gtk = true;
   };
 
-  home.packages = with pkgs; [
-    emacs
-    firefox
-    wofi
-    i3
-    zsh
-    kitty
-    tmux
-  ];
+  home.packages = with pkgs; [ emacs wofi i3 zsh kitty tmux ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

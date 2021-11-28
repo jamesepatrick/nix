@@ -5,8 +5,7 @@ let
     url = "https://github.com/jamesepatrick.keys";
     sha256 = "sha256-6NGBLNPcvsvCTa7UC3H3r9n8dKAHobINK5pxxm94nTM=";
   };
-in
-{
+in {
   # Allow Cleanup, nix, & flakes
   nix = {
     autoOptimiseStore = true;
@@ -17,8 +16,8 @@ in
     };
     package = pkgs.nixUnstable;
     extraOptions = ''
-            experimental-features = nix-command flakes
-        '';
+      experimental-features = nix-command flakes
+    '';
   };
 
   # Enable bootloader & clear /tmp on boot.
@@ -39,7 +38,7 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users ={
+  users.users = {
     root.initialPassword = "nixos";
     james = {
       description = "James Patrick";
@@ -52,12 +51,7 @@ in
   };
 
   # These are the most basic tools I need.
-  environment.systemPackages = with pkgs; [
-    git
-    gnumake
-    vim
-    zsh
-  ];
+  environment.systemPackages = with pkgs; [ nixfmt git gnumake vim zsh ];
 
   networking = {
     firewall = {

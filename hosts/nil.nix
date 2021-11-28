@@ -34,38 +34,34 @@
     "cryptd"
   ];
 
-  hardware.firmware = [
-    pkgs.rtw89-firmware
-  ];
+  hardware.firmware = [ pkgs.rtw89-firmware ];
 
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
-  boot.supportedFilesystems = ["zfs"];
+  boot.supportedFilesystems = [ "zfs" ];
 
-  boot.initrd.luks.devices."crypt" =
-    { device = "/dev/disk/by-partlabel/crypt";
-      preLVM = true;
-    };
+  boot.initrd.luks.devices."crypt" = {
+    device = "/dev/disk/by-partlabel/crypt";
+    preLVM = true;
+  };
 
-  fileSystems."/" =
-    { device = "rpool/root/nixos";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "rpool/root/nixos";
+    fsType = "zfs";
+  };
 
-  fileSystems."/home" =
-    { device = "rpool/home";
-      fsType = "zfs";
-    };
+  fileSystems."/home" = {
+    device = "rpool/home";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-partlabel/boot";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partlabel/boot";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [ { device = "/dev/partitions/swap"; }
-    ];
+  swapDevices = [{ device = "/dev/partitions/swap"; }];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
