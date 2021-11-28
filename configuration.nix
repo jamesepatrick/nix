@@ -3,7 +3,7 @@
 let
   publicKey = pkgs.fetchurl {
     url = "https://github.com/jamesepatrick.keys";
-    sha256 = "sha256-6NGBLNPcvsvCTa7UC3H3r9n8dKAHobINK5pxxm94nTM=";
+    sha256 = "sha256-Btjo+v/xA26CwwFauNmSdJOauIq/yZoBV1Com39nu6E=";
   };
 in {
   # Allow Cleanup, nix, & flakes
