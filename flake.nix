@@ -35,7 +35,6 @@
         nil = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
             ./hosts/nil.nix
             home-manager.nixosModules.home-manager

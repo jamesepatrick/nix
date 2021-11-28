@@ -20,15 +20,6 @@ in {
     '';
   };
 
-  # Enable bootloader & clear /tmp on boot.
-  boot = {
-    cleanTmpDir = true;
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
-
   # Locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
