@@ -1,5 +1,12 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ../boot.nix ../cli.nix ../fonts.nix ../sway.nix ./minimal.nix ];
+  imports = [
+    ../applications/firefox.nix
+    ../boot.nix
+    ../cli.nix
+    ../fonts.nix
+    ../sway.nix
+    ./minimal.nix
+  ];
 
   # Enable sound.
   sound.enable = true;

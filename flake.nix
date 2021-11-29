@@ -43,6 +43,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.james = import ./home.nix;
             }
+            { nixpkgs.overlays = [ nur.overlay ]; }
           ];
         };
 

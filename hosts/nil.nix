@@ -10,8 +10,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # This is required for the zfs module as well. Must be unique. Run the following
-  #   head -c4  /dev/urandom | od -A none -t x4
+  # This is required for the zfs module as well. Must be unique. Run the following head -c4  /dev/urandom | od -A none -t x4
   networking.hostId = "a7a1c3f5";
   networking.hostName = "nil"; # Define your hostname.
 
