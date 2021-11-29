@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }: {
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+  };
+
   home-manager.users.james = {
-    wayland.windowManager.sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
 
     home.packages = with pkgs; [
       autotiling
