@@ -6,6 +6,7 @@ let
     sha256 = "sha256-Btjo+v/xA26CwwFauNmSdJOauIq/yZoBV1Com39nu6E=";
   };
 in {
+  imports = [ ../system/xdg.nix ];
   # Allow Cleanup, nix, & flakes
   nix = {
     autoOptimiseStore = true;
