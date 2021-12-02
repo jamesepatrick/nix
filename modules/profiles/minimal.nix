@@ -36,7 +36,7 @@ in {
     root.initialPassword = "nixos";
     james = {
       description = "James Patrick";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "systemd-journal" ];
       initialPassword = "nixos";
       isNormalUser = true;
       openssh.authorizedKeys.keyFiles = [ publicKey ];
