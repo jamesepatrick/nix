@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [
     ../applications/firefox.nix
+    ../applications/nextcloud.nix
     ../boot.nix
     ../cli.nix
     ../fonts.nix
