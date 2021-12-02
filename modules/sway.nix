@@ -5,6 +5,10 @@
   };
 
   home-manager.users.james = {
+    home.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      XDG_CURRENT_DESKTOP = "sway";
+    };
 
     home.packages = with pkgs; [
       autotiling
@@ -51,15 +55,19 @@
     # systemctl --user import-environment in startsway
     environment.PATH = lib.mkForce null;
     serviceConfig = {
-      Type = "simple";
-      ExecStart = ''
-        ${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug
-      '';
+      ExecStart =
+        "${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug";
+      ExecStopPost =
+        "/usr/bin/systemctl --user unset-environment SWAYSOCK DISPLAY I3SOCK WAYLAND_DISPLAY";
+      NotifyAccess = "all";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
+      Type = "simple";
     };
   };
 
   users.users.james.extraGroups = [ "video" "audio" ];
+
+  imports = [ ./applications/mako.nix ./applications/waybar.nix ];
 }
