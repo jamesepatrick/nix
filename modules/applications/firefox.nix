@@ -49,7 +49,13 @@
           };
         };
       };
+    };
 
+    # This is a bit silly as this is currently managed by my make dot config.
+    xdg.configFile."tridactyl/tridactylrc".source = pkgs.fetchurl {
+      url =
+        "https://git.jpatrick.io/james/dotfiles/raw/branch/master/tridactyl/tridactylrc";
+      sha256 = "sha256-iOBd/yEvQP/Gn3+lS2Ztu9oslllZU4G7VnM4pTck+Tg=";
     };
   };
 }
