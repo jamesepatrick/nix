@@ -1,11 +1,17 @@
 { config, pkgs, ... }: {
+
   home-manager.users.james = {
+
+    # Enable touch controls.
+    home.sessionVariables = { MOZ_USE_XINPUT2 = 1; };
+
     programs.firefox = {
       enable = true;
 
       package = pkgs.firefox.override {
         cfg = {
           enableTridactylNative = true;
+          # TODO make this general based on the whether sway is being used.
           forceWayland = true;
         };
       };
