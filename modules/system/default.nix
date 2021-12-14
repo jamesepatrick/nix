@@ -1,1 +1,1 @@
-{ config, pkgs, ... }: { imports = [ ./gtk.nix ./xdg.nix ]; }
+{ config, pkgs, ... }: { imports = [ ./gtk.nix ./xdg.nix ./flatpak.nix ]; }
