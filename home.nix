@@ -6,7 +6,7 @@
   home.username = "james";
   home.homeDirectory = "/home/james";
 
-  home.packages = with pkgs; [ emacs killall cmake i3 zsh tmux ];
+  home.packages = with pkgs; [ killall cmake zsh tmux ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
