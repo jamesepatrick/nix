@@ -1,11 +1,13 @@
 { options, config, lib, pkgs, ... }:
-let cfg = config.application.mako;
+let
+  cfg = config.application.mako;
+  sway = config.application.sway;
 in with lib; {
   options = {
     application.mako = {
       enable = mkOption {
         # TODO track based on sway default
-        default = false;
+        default = sway.enable;
         type = with types; bool;
         description = "testing one two three";
       };

@@ -1,6 +1,6 @@
 { config, lib, ... }: {
-  # Enable bootloader & clear /tmp on boot.
   boot = {
+    # Enable bootloader & clear /tmp on boot.
     cleanTmpDir = true;
     loader = {
       systemd-boot.enable = true;

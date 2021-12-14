@@ -1,12 +1,14 @@
 { inputs, config, lib, pkgs, ... }:
 # TODO Still need the following dependecies
 #  - Language tools (grammer)
-let cfg = config.application.emacs;
+let
+  cfg = config.application.emacs;
+  graphical = config.graphical;
 in with lib; {
   options = {
     application.emacs = {
       enable = mkOption {
-        default = true;
+        default = graphical.enable;
         type = with types; bool;
         description = "Insert joke about emacs is an operating system.";
       };
