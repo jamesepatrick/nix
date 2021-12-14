@@ -5,7 +5,6 @@
     ../boot.nix
     ../cli.nix
     ../fonts.nix
-    ../sway.nix
     ../system/gtk.nix
     ./minimal.nix
   ];
