@@ -5,7 +5,6 @@ in {
   imports = [
     ../applications/firefox.nix
     ../applications/nextcloud.nix
-    ../boot.nix
     ../cli.nix
     ../fonts.nix
     ../system/gtk.nix
