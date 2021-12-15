@@ -6,7 +6,6 @@ in {
     ../applications/firefox.nix
     ../applications/nextcloud.nix
     ../cli.nix
-    ../fonts.nix
     ../system/gtk.nix
     ./minimal.nix
   ];
