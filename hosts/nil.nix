@@ -5,10 +5,11 @@
 
 {
   imports = [
-    ../modules/zfs.nix
     ../modules/profiles/laptop.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+
+  this.systems.zfs.enable = true;
 
   # This is required for the zfs module as well. Must be unique. Run the following head -c4  /dev/urandom | od -A none -t x4
   networking.hostId = "a7a1c3f5";

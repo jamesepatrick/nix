@@ -15,6 +15,5 @@
     # TODO Refactor everything after this.
     ./cli.nix
     ./fonts.nix
-    ./zfs.nix
   ];
 }
