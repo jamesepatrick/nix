@@ -1,7 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-let grpahical = config.graphical;
-in {
+{ config, lib, pkgs, ... }: {
   imports = [
     ../applications/firefox.nix
     ../applications/nextcloud.nix
@@ -10,7 +7,7 @@ in {
     ./minimal.nix
   ];
 
-  graphical.enable = true;
+  this.graphical.enable = true;
 
   # Enable sound.
   sound.enable = true;

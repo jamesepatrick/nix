@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.application.nextcloud;
-  graphical = config.graphical;
+  graphical = config.this.graphical;
 in with lib; {
   options = {
     application.nextcloud = {

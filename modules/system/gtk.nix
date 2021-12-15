@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-let graphical = config.graphical;
+let graphical = config.this.graphical;
 in with lib; {
   config = mkIf graphical.enable {
     home-manager.users.james = {

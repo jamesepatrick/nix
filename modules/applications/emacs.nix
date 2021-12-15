@@ -3,7 +3,7 @@
 #  - Language tools (grammer)
 let
   cfg = config.application.emacs;
-  graphical = config.graphical;
+  graphical = config.this.graphical;
 in with lib; {
   options = {
     application.emacs = {

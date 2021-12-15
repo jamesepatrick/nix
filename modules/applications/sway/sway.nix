@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.application.sway;
-  graphical = config.graphical;
+  graphical = config.this.graphical;
 in with lib; {
   options = {
     application.sway = {

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.application.firefox;
-  graphical = config.graphical;
+  graphical = config.this.graphical;
   sway_cfg = config.applications.sway;
 in with lib; {
   options = {
