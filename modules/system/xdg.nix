@@ -1,8 +1,7 @@
 # This was cribed from Hlisser's dotfiles see here
 # https://github.com/hlissner/dotfiles/blob/8fe1fbb6e7fc0d2f95fe75cdb9df7eb0595a0047/modules/xdg.nix
-#
-{ config, pkgs, ... }: {
 
+{ config, pkgs, ... }: {
   home-manager.users.james = {
     home.packages = with pkgs; [ xdg-utils xdg-launch ];
     xdg.enable = true;
