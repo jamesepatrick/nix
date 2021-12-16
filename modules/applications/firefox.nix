@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.application.firefox;
+  cfg = config.this.application.firefox;
   graphical = config.this.graphical;
-  sway_cfg = config.applications.sway;
+  sway_cfg = config.this.application.sway;
 in with lib; {
   options = {
-    application.firefox = {
+    this.application.firefox = {
       enable = mkOption {
         default = graphical.enable;
         type = with types; bool;

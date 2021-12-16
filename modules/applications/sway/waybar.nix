@@ -1,12 +1,11 @@
 { options, config, lib, pkgs, ... }:
 let
-  cfg = config.application.waybar;
-  sway_cfg = config.application.sway;
+  cfg = config.this.application.waybar;
+  sway_cfg = config.this.application.sway;
 in with lib; {
   options = {
-    application.waybar = {
+    this.application.waybar = {
       enable = mkOption {
-        # TODO track based on sway default
         default = sway_cfg.enable;
         type = with types; bool;
         description = "testing one two three";

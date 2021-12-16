@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.application.sway;
+  cfg = config.this.application.sway;
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    application.sway = {
+    this.application.sway = {
       enable = mkOption {
         # TODO base on graphical
         default = graphical.enable;

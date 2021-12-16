@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.application.nextcloud;
+  cfg = config.this.application.nextcloud;
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    application.nextcloud = {
+    this.application.nextcloud = {
       enable = mkOption {
         default = graphical.enable;
         type = with types; bool;
