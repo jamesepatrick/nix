@@ -9,8 +9,10 @@ in {
   imports = [ ../. ../system/xdg.nix ];
   # Allow Cleanup, nix, & flakes
   nix = {
-    autoOptimiseStore = true;
-    allowedUsers = [ "@wheel" ];
+    settings = {
+    auto-optimise-store = true;
+    allowed-users = [ "@wheel" ];
+    };
     gc = {
       automatic = true;
       dates = "daily";
