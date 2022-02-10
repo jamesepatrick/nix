@@ -118,7 +118,7 @@ remove:
 	swapoff /dev/partitions/swap      >/dev/null || true
 	umount /mnt/home                  >/dev/null || true
 	umount /mnt/boot                  >/dev/null || true
-	umount /mnt/rpool                  >/dev/null || true
+	umount /mnt/rpool                 >/dev/null || true
 	umount /mnt                       >/dev/null || true
 	yes | lvremove /dev/partitions/*  >/dev/null || true
 	cryptsetup close root             >/dev/null || true

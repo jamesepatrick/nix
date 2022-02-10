@@ -14,8 +14,8 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-
     home-manager.users.james = {
+      systemd.user.startServices = true;
       programs.mako = {
         enable = true;
         width = 450;
@@ -50,22 +50,34 @@ in with lib; {
 
       home.packages = with pkgs; [ libnotify ];
     };
-
     systemd.user.services.mako = {
       enable = true;
-      description = "Mako - Notificaitons for Wayland";
-      documentation = [ "man:mako(5)" ];
-      partOf = [ "sway-session.target" ];
-      bindsTo = [ "sway-session.target" ];
-      environment.PATH = lib.mkForce null;
+      description = "Mako foo";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.mako}/bin/mako";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-        Type = "simple";
+        ExecStart = ''
+          ${pkgs.mako}/bin/mako
+        '';
+        RestartSec = 5;
+        Restart = "always";
       };
     };
 
+    # systemd.user.services.mako = {
+    #   enable = true;
+    #   description = "Mako - Notificaitons for Wayland";
+    #   documentation = [ "man:mako(5)" ];
+    #   partOf = [ "sway-session.target" ];
+    #   bindsTo = [ "sway-session.target" ];
+    #   environment.PATH = lib.mkForce null;
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.mako}/bin/mako";
+    #     Restart = "on-failure";
+    #     RestartSec = 1;
+    #     TimeoutStopSec = 10;
+    #     Type = "simple";
+    #   };
+    # };
   };
 }
