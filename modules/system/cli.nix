@@ -1,10 +1,14 @@
 { config, pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
+    cmake
     htop
-    ripgrep
     jq
-    unzip
+    killall
+    ripgrep
     silver-searcher
+    tmux
+    unzip
+    zsh
   ];
 }
