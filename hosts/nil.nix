@@ -36,54 +36,61 @@
 
   this.systems.zfs.enable = true;
 
-  # This is required for the zfs module as well. Must be unique. Run the following head -c4  /dev/urandom | od -A none -t x4
-  networking.hostId = "a7a1c3f5";
-  networking.hostName = "nil"; # Define your hostname.
+  networking = {
+    # This is required for the zfs module as well. Must be unique. Run the following head -c4  /dev/urandom | od -A none -t x4
+    hostId = "a7a1c3f5";
+    hostName = "nil"; # Define your hostname.
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0f0.useDHCP = true;
-  networking.interfaces.enp5s0.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
-
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "vfat"
-    "xhci_pci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-    "sdhci_pci"
-    "cryptd"
-  ];
+    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+    # Per-interface useDHCP will be mandatory in the future, so this generated config
+    # replicates the default behaviour.
+    useDHCP = false;
+    interfaces = {
+      enp2s0f0.useDHCP = true;
+      enp5s0.useDHCP = true;
+      wlp3s0.useDHCP = true;
+    };
+  };
 
   hardware.firmware = [ pkgs.rtw89-firmware ];
 
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
-  boot.supportedFilesystems = [ "zfs" ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "vfat"
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "sdhci_pci"
+        "cryptd"
+      ];
+      kernelModules = [ "dm-snapshot" ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
+    supportedFilesystems = [ "zfs" ];
+  };
 
   boot.initrd.luks.devices."crypt" = {
     device = "/dev/disk/by-partlabel/crypt";
     preLVM = true;
   };
 
-  fileSystems."/" = {
-    device = "rpool/root/nixos";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-partlabel/boot";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "rpool/root/nixos";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "rpool/home";
+      fsType = "zfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-partlabel/boot";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [{ device = "/dev/partitions/swap"; }];
