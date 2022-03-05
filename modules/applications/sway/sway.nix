@@ -46,7 +46,6 @@ in with lib; {
           '';
         })
       ];
-
     };
 
     programs.sway = {

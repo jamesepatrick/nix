@@ -1,25 +1,4 @@
-# Nil Install Guide
-
-This is the nix configuration for a 2021 Thinkpad T14 AMD g2 machine named `nil`.
-
-The boot media looks like
-
-```
-NAME                          TYPE     MOUNTPOINT
-nvme0n1                       disk
-├─nvme0n1p1                   part     /boot
-└─nvme0n1p2                   part
-  └─crypt                     crypt    /dev/mapper/root
-    └─partitions              lvm
-      ├─swap                  swap     /dev/partitions/swap
-      └─lvm_root              lvm      /dev/partitions/lvm_root
-        └─rpool               zpool
-          ├─rpool/root        zfs
-          ├─rpool/root/nixos  zfs      /
-          └─rpool/home        zfs      /home
-```
-
-## Install
+# Install
 
 A makefile is used for ease of use. To set this up on a new machine you will need the following:
 
@@ -42,13 +21,13 @@ Once you have set the `PASSPHRASE` & `DISK` vars run
 sudo make nix_install
 ```
 
-## TODO
+# TODO
 
 - Document setting the `networking.hostId` variable.
 - Use [NixOS Hardware](https://github.com/NixOS/nixos-hardware) Modules.
 - Fix wireless driver issue :: This uses the Realtek 8852AE 802.11AX WWAN.
 
-## References
+# References
 
 - [Installing NixOS with encrypted ZFS on a netcup.de root server](https://florianfranke.dev/posts/2020/03/installing-nixos-with-encrypted-zfs-on-a-netcup.de-root-server/)
 - [NixOS on Framework laptop](http://kvark.github.io/linux/framework/2021/10/17/framework-nixos.html)

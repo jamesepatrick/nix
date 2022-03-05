@@ -10,8 +10,8 @@ in {
   # Allow Cleanup, nix, & flakes
   nix = {
     settings = {
-    auto-optimise-store = true;
-    allowed-users = [ "@wheel" ];
+      auto-optimise-store = true;
+      allowed-users = [ "@wheel" ];
     };
     gc = {
       automatic = true;
