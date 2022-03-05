@@ -8,6 +8,7 @@
   imports = [
     ./system
     ./applications
+    ./lang
     # TODO Refactor everything after this.
     ./cli.nix
   ];
