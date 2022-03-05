@@ -2,7 +2,6 @@
   imports = [
     ../applications/firefox.nix
     ../applications/nextcloud.nix
-    ../cli.nix
     ../system/gtk.nix
     ./minimal.nix
   ];

@@ -5,11 +5,5 @@
     description = "Does this actually need X/Wayland";
   };
 
-  imports = [
-    ./system
-    ./applications
-    ./lang
-    # TODO Refactor everything after this.
-    ./cli.nix
-  ];
+  imports = [ ./applications ./lang ./system ];
 }
