@@ -7,7 +7,7 @@ ifneq ($(REQUIRED_V),$(firstword $(sort $(MAKE_VERSION) $(REQUIRED_V))))
 endif
 
 .PHONY:  format \
-	partitios
+	partition \
 	configure_boot \
 	configure_luks \
 	configure_lvm \
@@ -95,6 +95,7 @@ mount:
 	mount /dev/disk/by-partlabel/boot /mnt/boot
 
 nix_install:
+	cd ..
 	nixos-generate-config --root /mnt
 	cp -i nixos/* /mnt/etc/nixos/
 	nixos-install
