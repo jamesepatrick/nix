@@ -24,7 +24,6 @@ in with lib; {
       home.packages = with pkgs; [
         autotiling
         dmenu
-        kitty
         mako
         swayidle
         swaylock

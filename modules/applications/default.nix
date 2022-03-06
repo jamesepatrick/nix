@@ -1,4 +1,10 @@
 { config, pkgs, ... }: {
-  imports =
-    [ ./sway ./emacs.nix ./gnome-common.nix ./firefox.nix ./nextcloud.nix ];
+  imports = [
+    ./emacs.nix
+    ./firefox.nix
+    ./gnome-common.nix
+    ./kitty.nix
+    ./nextcloud.nix
+    ./sway
+  ];
 }
