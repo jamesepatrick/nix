@@ -40,22 +40,27 @@ in with lib; {
             name = "primary";
             id = 0;
             settings = {
-              "browser.download.useDownloadDir" =
-                false; # Ask for download location
-              "browser.in-content.dark-mode" = true; # Dark mode
+              # Don't ask for download location
+              "browser.download.useDownloadDir" = false;
+              # Use Darkmode
+              "browser.in-content.dark-mode" = true;
+              # Disable Top Stories on homepage.
               "browser.newtabpage.activity-stream.feeds.section.topstories" =
-                false; # Disable top stories
+                false;
+              # Disable Feed on homepage.
               "browser.newtabpage.activity-stream.feeds.sections" = false;
-              "browser.newtabpage.activity-stream.feeds.system.topstories" =
-                false; # Disable top stories
+              # Disable pocket on homepage.
               "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-                false; # Disable pocket
-              "media.eme.enabled" = true; # Enable DRM
-              "media.gmp-widevinecdm.visible" = true; # Enable DRM
-              "media.gmp-widevinecdm.enabled" = true; # Enable DRM
-              "signon.autofillForms" = false; # Disable built-in form-filling
-              "signon.rememberSignons" =
-                false; # Disable built-in password manager
+                false;
+              # Enable DRM
+              "media.eme.enabled" = true;
+              "media.gmp-widevinecdm.visible" = true;
+              "media.gmp-widevinecdm.enabled" = true;
+              # Disable built-in form-filling
+              "signon.autofillForms" = false;
+              # Disable built-in password manager
+              "signon.rememberSignons" = false;
+              # No really use Darkmode
               "ui.systemUsesDarkTheme" = true; # Dark mode
             };
           };
