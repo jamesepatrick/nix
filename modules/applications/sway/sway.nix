@@ -24,9 +24,13 @@ in with lib; {
       home.packages = with pkgs; [
         autotiling
         dmenu
-        mako
+        grim
+        imagemagick
+        slurp
+        gammastep
         swayidle
         swaylock
+        playerctl
         wl-clipboard
         wofi
         (writeTextFile {
@@ -46,6 +50,8 @@ in with lib; {
         })
       ];
     };
+
+    programs.light.enable = true;
 
     programs.sway = {
       enable = true;
