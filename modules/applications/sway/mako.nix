@@ -6,7 +6,7 @@ in with lib; {
   options = {
     this.application.mako = {
       enable = mkOption {
-        default = sway.enable;
+        default = false;
         type = with types; bool;
         description = "testing one two three";
       };
