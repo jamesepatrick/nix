@@ -61,9 +61,10 @@ in with lib; {
     };
 
     systemd.user.services.sway = {
+      enable = true;
       description = "Sway - Wayland window manager";
       documentation = [ "man:sway(5)" ];
-      bindsTo = [ "graphical-session.target" ];
+      bindsTo = [ "default.target" ];
       wants = [ "graphical-session-pre.target" ];
       after = [ "graphical-session-pre.target" ];
       # We explicitly unset PATH here, as we want it to be set by

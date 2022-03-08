@@ -53,7 +53,7 @@ in with lib; {
     systemd.user.services.mako = {
       enable = true;
       description = "Mako foo";
-      wantedBy = [ "graphical-session.target" ];
+      wantedBy = [ "sway-session.target" ];
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = ''
