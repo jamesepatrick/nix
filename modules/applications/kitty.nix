@@ -18,9 +18,9 @@ in with lib; {
       programs.kitty = {
         enable = true;
         font = {
-          package = pkgs.fira-code;
-          name = "Fira Code";
-          size = 11;
+          package = pkgs.hasklig;
+          name = "Hasklig";
+          size = 10;
         };
         settings = {
           scrollback_lines = 10000;
