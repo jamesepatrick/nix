@@ -8,6 +8,7 @@ in {
         alegreya
         fira-code
         fira-code-symbols
+        font-awesome
         hasklig
         inter
         liberation_ttf
