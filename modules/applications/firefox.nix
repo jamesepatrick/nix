@@ -29,10 +29,11 @@ in with lib; {
         };
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          onepassword-password-manager
           https-everywhere
-          ublock-origin
+          onepassword-password-manager
+          simple-tab-groups
           tridactyl
+          ublock-origin
         ];
 
         profiles = {
