@@ -89,8 +89,7 @@ in with lib; {
             XF86AudioMute = "exec ${volume-sh}/bin/volume.sh mute";
             XF86AudioRaiseVolume = "exec ${volume-sh}/bin/volume.sh up";
             XF86AudioLowerVolume = "exec ${volume-sh}/bin/volume.sh down";
-            XF86AudioPlay = "exec ${pkgs.playerctl}/bin/playerctl play";
-            XF86AudioPause = "exec ${pkgs.playerctl}/bin/playerctl pause";
+            Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             XF86MonBrightnessUp = "exec ${brightness-sh}/bin/brightness.sh up";
             XF86MonBrightnessDown =
               "exec ${brightness-sh}/bin/brightness.sh down";
