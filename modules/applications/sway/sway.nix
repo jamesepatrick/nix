@@ -7,6 +7,11 @@ let
       "https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/evening-sky.png";
     sha256 = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
   };
+
+  brightness-sh = pkgs.callPackage ./scripts/brightness.nix { inherit pkgs; };
+  sway-entry = pkgs.callPackage ./scripts/sway-entry.nix { inherit pkgs; };
+  volume-sh = pkgs.callPackage ./scripts/volume.nix { inherit pkgs; };
+  scripts = [ brightness-sh sway-entry volume-sh ];
 in with lib; {
   options = {
     this.application.sway = {
@@ -80,47 +85,48 @@ in with lib; {
             outer = 2;
           };
           # And import and scripts as scene here would be good.
+          keybindings = mkOptionDefault {
+            XF86AudioMute = "exec ${volume-sh}/bin/volume.sh mute";
+            XF86AudioRaiseVolume = "exec ${volume-sh}/bin/volume.sh up";
+            XF86AudioLowerVolume = "exec ${volume-sh}/bin/volume.sh down";
+            XF86AudioPlay = "exec ${pkgs.playerctl}/bin/playerctl play";
+            XF86AudioPause = "exec ${pkgs.playerctl}/bin/playerctl pause";
+            XF86MonBrightnessUp = "exec ${brightness-sh}/bin/brightness.sh up";
+            XF86MonBrightnessDown =
+              "exec ${brightness-sh}/bin/brightness.sh down";
+          };
           # https://github.com/gytis-ivaskevicius/nixfiles/blob/master/home-manager/i3-sway.nix
-          keybindings = mkOptionDefault { "Mod4+d" = ""; };
           modifier = "Mod4";
           output = { "eDP-1" = { bg = "${wallpaper} fill"; }; };
           terminal = "${pkgs.kitty}/bin/kitty";
           # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.config.window.commands
-          window = { };
+          # window = { };
+          startup = [{ command = "${pkgs.autotiling}/bin/autotiling"; }];
         };
       };
 
-      home.packages = with pkgs; [
-        autotiling
-        dmenu
-        grim
-        imagemagick
-        slurp
-        gammastep
-        swayidle
-        swaylock
-        playerctl
-        wl-clipboard
-        wofi
-        (writeTextFile {
-          name = "sway-entry";
-          destination = "/bin/sway-entry";
-          executable = true;
-          text = ''
-            #! ${pkgs.bash}/bin/bash
-
-            # first import environment variables from the login manager
-            # function is currently deprecated. It should be rolled back in the future
-            systemctl --user import-environment
-
-            # then start the service
-            exec systemctl --user start sway.service
-          '';
-        })
-      ];
+      home.packages = with pkgs;
+        [
+          autotiling
+          batsignal
+          dmenu
+          grim
+          imagemagick
+          slurp
+          gammastep
+          swayidle
+          swaylock
+          playerctl
+          wl-clipboard
+          wofi
+        ] ++ scripts;
     };
 
     programs.light.enable = true;
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
 
     systemd.user.targets.sway-session = {
       description = "Sway compositor session";
