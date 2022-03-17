@@ -26,7 +26,7 @@ in with lib; {
           padding = 20
           horizontal_padding = 20
 
-          width = 275
+          width = 300
           height = 100
           offset = 40x60
           origin = top-right
