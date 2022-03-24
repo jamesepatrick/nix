@@ -2,6 +2,7 @@
 let
   cfg = config.this.application.sway;
   graphical = config.this.graphical;
+  modifier = "Mod4";
   wallpaper = pkgs.fetchurl {
     url =
       "https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/evening-sky.png";
@@ -23,13 +24,17 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+
+    this.graphical.protocol = "Wayland";
+
     home-manager.users.james = {
       home.sessionVariables = { XDG_CURRENT_DESKTOP = "sway"; };
       wayland.windowManager.sway = {
         enable = true;
+        package = null;
         wrapperFeatures.gtk = true;
         config = {
-          bars = [ ];
+          # bars = [ ];
           colors = {
             focusedInactive = {
               background = "#1E1E2E";
@@ -86,13 +91,20 @@ in with lib; {
           };
           # And import and scripts as scene here would be good.
           keybindings = mkOptionDefault {
+            "${modifier}+q" = "kill";
+            "${modifier}+d" = "focus mode_toggle";
+            "${modifier}+a" = "focus parent";
+            "${modifier}+shift+s" = "sticky toggle";
+            "${modifier}+shift+f" = "floating toggle";
+            "${modifier}+space" =
+              "exec $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu)";
+            Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+            XF86AudioLowerVolume = "exec ${volume-sh}/bin/volume.sh down";
             XF86AudioMute = "exec ${volume-sh}/bin/volume.sh mute";
             XF86AudioRaiseVolume = "exec ${volume-sh}/bin/volume.sh up";
-            XF86AudioLowerVolume = "exec ${volume-sh}/bin/volume.sh down";
-            Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-            XF86MonBrightnessUp = "exec ${brightness-sh}/bin/brightness.sh up";
             XF86MonBrightnessDown =
               "exec ${brightness-sh}/bin/brightness.sh down";
+            XF86MonBrightnessUp = "exec ${brightness-sh}/bin/brightness.sh up";
           };
           # https://github.com/gytis-ivaskevicius/nixfiles/blob/master/home-manager/i3-sway.nix
           modifier = "Mod4";
@@ -134,7 +146,6 @@ in with lib; {
       wants = [ "graphical-session-pre.target" ];
       after = [ "graphical-session-pre.target" ];
     };
-
     systemd.user.services.sway = {
       enable = true;
       description = "Sway - Wayland window manager";
@@ -161,4 +172,3 @@ in with lib; {
     users.users.james.extraGroups = [ "video" "audio" ];
   };
 }
-
