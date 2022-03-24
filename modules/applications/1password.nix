@@ -15,9 +15,11 @@ in with lib; {
     };
   };
 
-  config = mkIf (cfg.gui.enable || cfg.cli.enable) {
+  config = mkIf enable {
     home-manager.users.james = {
-      home.packages = with pkgs; [ _1password _1password-gui ];
+      home.packages = with pkgs;
+        optionals (cfg.gui.enable) [ _1password-gui ]
+        ++ optionals (cfg.cli.enable) [ _1password ];
     };
   };
 }
