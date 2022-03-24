@@ -5,12 +5,10 @@ let
   sway_cfg = config.this.application.sway;
 in with lib; {
   options = {
-    this.application.firefox = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-        description = "";
-      };
+    this.application.firefox.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
+      description = "";
     };
   };
 

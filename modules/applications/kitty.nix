@@ -4,11 +4,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    this.application.kitty = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-      };
+    this.application.kitty.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

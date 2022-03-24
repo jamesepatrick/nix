@@ -4,11 +4,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    this.lang.golang = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-      };
+    this.lang.golang.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

@@ -4,11 +4,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    systems.displaymanager = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-      };
+    systems.displaymanager.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

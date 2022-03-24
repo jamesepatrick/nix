@@ -15,16 +15,13 @@ let
   scripts = [ brightness-sh sway-entry volume-sh ];
 in with lib; {
   options = {
-    this.application.sway = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-      };
+    this.application.sway.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 
   config = mkIf cfg.enable {
-
     this.graphical.protocol = "Wayland";
 
     home-manager.users.james = {
@@ -139,33 +136,33 @@ in with lib; {
       wrapperFeatures.gtk = true;
     };
 
-    systemd.user.targets.sway-session = {
-      description = "Sway compositor session";
-      documentation = [ "man:systemd.special(7)" ];
-      bindsTo = [ "graphical-session.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
-    };
-    systemd.user.services.sway = {
-      enable = true;
-      description = "Sway - Wayland window manager";
-      documentation = [ "man:sway(5)" ];
-      bindsTo = [ "default.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
-      # We explicitly unset PATH here, as we want it to be set by
-      # systemctl --user import-environment in startsway
-      environment.PATH = lib.mkForce null;
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug";
-        ExecStopPost =
-          "/usr/bin/env systemctl --user unset-environment SWAYSOCK DISPLAY I3SOCK WAYLAND_DISPLAY";
-        NotifyAccess = "all";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    systemd.user = {
+      targets.sway-session = {
+        description = "Sway compositor session";
+        documentation = [ "man:systemd.special(7)" ];
+        bindsTo = [ "graphical-session.target" ];
+        wants = [ "graphical-session-pre.target" ];
+        after = [ "graphical-session-pre.target" ];
+      };
+      services.sway = {
+        enable = true;
+        description = "Sway - Wayland window manager";
+        documentation = [ "man:sway(5)" ];
+        bindsTo = [ "default.target" ];
+        wants = [ "graphical-session-pre.target" ];
+        after = [ "graphical-session-pre.target" ];
+        environment.PATH = lib.mkForce null;
+        serviceConfig = {
+          Type = "simple";
+          ExecStart =
+            "${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug";
+          ExecStopPost =
+            "/usr/bin/env systemctl --user unset-environment SWAYSOCK DISPLAY I3SOCK WAYLAND_DISPLAY";
+          NotifyAccess = "all";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
     };
 

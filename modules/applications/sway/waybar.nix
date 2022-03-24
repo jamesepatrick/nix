@@ -4,12 +4,10 @@ let
   sway_cfg = config.this.application.sway;
 in with lib; {
   options = {
-    this.application.waybar = {
-      enable = mkOption {
-        default = sway_cfg.enable;
-        type = with types; bool;
-        description = "testing one two three";
-      };
+    this.application.waybar.enable = mkOption {
+      default = sway_cfg.enable;
+      type = with types; bool;
+      description = "testing one two three";
     };
   };
 

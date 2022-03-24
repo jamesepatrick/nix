@@ -4,12 +4,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    this.application.nextcloud = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-        description = "Dropbox for people who don't like dropbox";
-      };
+    this.application.nextcloud.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

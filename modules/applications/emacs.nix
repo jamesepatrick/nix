@@ -6,12 +6,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    this.application.emacs = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-        description = "Insert joke about emacs is an operating system.";
-      };
+    this.application.emacs.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

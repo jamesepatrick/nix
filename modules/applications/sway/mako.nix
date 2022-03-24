@@ -4,12 +4,10 @@ let
   sway = config.this.application.sway;
 in with lib; {
   options = {
-    this.application.mako = {
-      enable = mkOption {
-        default = false;
-        type = with types; bool;
-        description = "testing one two three";
-      };
+    this.application.mako.enable = mkOption {
+      default = false;
+      type = with types; bool;
+      description = "testing one two three";
     };
   };
 
@@ -63,21 +61,5 @@ in with lib; {
         Restart = "always";
       };
     };
-
-    # systemd.user.services.mako = {
-    #   enable = true;
-    #   description = "Mako - Notificaitons for Wayland";
-    #   documentation = [ "man:mako(5)" ];
-    #   partOf = [ "sway-session.target" ];
-    #   bindsTo = [ "sway-session.target" ];
-    #   environment.PATH = lib.mkForce null;
-    #   serviceConfig = {
-    #     ExecStart = "${pkgs.mako}/bin/mako";
-    #     Restart = "on-failure";
-    #     RestartSec = 1;
-    #     TimeoutStopSec = 10;
-    #     Type = "simple";
-    #   };
-    # };
   };
 }

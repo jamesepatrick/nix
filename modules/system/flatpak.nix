@@ -4,12 +4,9 @@ let
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    systems.flatpak = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
-        description = "When they tried to do docker for GUIs";
-      };
+    systems.flatpak.enable = mkOption {
+      default = graphical.enable;
+      type = with types; bool;
     };
   };
 

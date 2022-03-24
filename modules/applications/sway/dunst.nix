@@ -4,11 +4,9 @@ let
   sway = config.this.application.sway;
 in with lib; {
   options = {
-    this.application.dunst = {
-      enable = mkOption {
-        default = sway.enable;
-        type = with types; bool;
-      };
+    this.application.dunst.enable = mkOption {
+      default = sway.enable;
+      type = with types; bool;
     };
   };
 
