@@ -7,7 +7,6 @@ in with lib; {
     home-manager.users.james = {
       home.packages = with pkgs.gnome;
         [
-          #gnome-common
           cheese
           file-roller
           gnome-bluetooth
@@ -16,10 +15,10 @@ in with lib; {
           gnome-calendar
           gnome-characters
           gnome-color-manager
+          gnome-common
           gnome-contacts
           gnome-control-center
           gnome-dictionary
-          #gnome-documents
           gnome-font-viewer
           gnome-keyring
           gnome-maps
