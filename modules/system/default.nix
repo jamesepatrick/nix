@@ -6,6 +6,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./gtk.nix
+    ./power.nix
     ./xdg.nix
     ./zfs.nix
   ];

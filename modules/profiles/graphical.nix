@@ -6,7 +6,10 @@
     ./minimal.nix
   ];
 
-  this.graphical.enable = true;
+  this = {
+    graphical.enable = true;
+    system.power.enable = true;
+  };
 
   # Enable sound.
   sound.enable = true;

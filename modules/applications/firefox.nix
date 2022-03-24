@@ -15,11 +15,9 @@ in with lib; {
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       MOZ_USE_XINPUT2 = "1";
-    } // (if graphical.protocol == "Wayland" then {
+    } // optionals (graphical.protocol == "Wayland") {
       MOZ_ENABLE_WAYLAND = "1";
-    } else
-      { })
-      // (if sway_cfg.enable then { XDG_CURRENT_DESKTOP = "sway"; } else { });
+    } // optionals (sway_cfg.enable) { XDG_CURRENT_DESKTOP = "sway"; };
 
     home-manager.users.james = {
       programs.firefox = {
