@@ -5,5 +5,10 @@
     description = "Does this actually need X/Wayland";
   };
 
+  options.this.graphical.protocol = mkOption {
+    type = types.enum [ "X11" "Wayland" ];
+    default = null;
+  };
+
   imports = [ ./applications ./lang ./system ];
 }
