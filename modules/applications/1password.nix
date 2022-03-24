@@ -15,11 +15,25 @@ in with lib; {
     };
   };
 
-  config = mkIf enable {
-    home-manager.users.james = {
-      home.packages = with pkgs;
-        optionals (cfg.gui.enable) [ _1password-gui ]
-        ++ optionals (cfg.cli.enable) [ _1password ];
-    };
-  };
+  config = mkIf enable (mkMerge [
+    (mkIf cfg.cli.enable {
+      home-manager.users.james.home.packages = with pkgs; [ _1password ];
+    })
+    (mkIf cfg.gui.enable {
+      home-manager.users.james = {
+        home.packages = with pkgs; [ _1password-gui ];
+      };
+      systemd.user.services._1password = {
+        enable = true;
+        description = "1password for linux. (PAM not included)";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs._1password-gui}/bin/1password --silent";
+          RestartSec = 5;
+          Restart = "always";
+        };
+      };
+    })
+  ]);
 }
