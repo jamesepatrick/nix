@@ -6,6 +6,7 @@
     ./gnome-common.nix
     ./kitty.nix
     ./nextcloud.nix
+    ./spotify.nix
     ./sway
   ];
 }
