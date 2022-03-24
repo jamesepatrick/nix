@@ -26,6 +26,7 @@ in with lib; {
           scrollback_lines = 10000;
           enable_audio_bell = false;
           update_check_interval = 0;
+          background = "#131020";
           ## name: Catppuccin
           ## author: Pocco81 (https://github.com/Pocco81)
           ## license: MIT
@@ -33,7 +34,7 @@ in with lib; {
           ## blurb: Soothing pastel theme for the high-spirited!
           # The basic colors
           foreground = "#D9E0EE";
-          background = "#1E1E2E";
+          #background = "#1E1D2F";
           selection_foreground = "#D9E0EE";
           selection_background = "#575268";
           # Cursor colors
