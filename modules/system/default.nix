@@ -2,6 +2,7 @@
   imports = [
     ./boot.nix
     ./cli.nix
+    ./displaymanager.nix
     ./flatpak.nix
     ./fonts.nix
     ./gtk.nix
