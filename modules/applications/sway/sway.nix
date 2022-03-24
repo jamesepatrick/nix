@@ -116,12 +116,10 @@ in with lib; {
       home.packages = with pkgs;
         [
           autotiling
-          batsignal
           dmenu
           grim
           imagemagick
           slurp
-          gammastep
           swayidle
           swaylock
           playerctl
