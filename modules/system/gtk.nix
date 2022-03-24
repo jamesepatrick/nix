@@ -5,7 +5,7 @@ in with lib; {
     home-manager.users.james = {
       home.packages = with pkgs; [
         dracula-theme
-        moka-icon-theme
+        kora-icon-theme
         numix-cursor-theme
       ];
       home.sessionVariables = { GTK_THEME = "Dracula"; };
@@ -13,7 +13,7 @@ in with lib; {
       xdg.configFile."gtk-3.0/settings.ini".text = ''
         [Settings]
         gtk-theme-name=Dracula
-        gtk-icon-theme-name=Moka
+        gtk-icon-theme-name=kora
         gtk-cursor-theme-name=Numix-Cursor
         gtk-fallback-icon-theme=gnome
         gtk-application-prefer-dark-theme=true
