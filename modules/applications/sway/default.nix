@@ -1,3 +1,3 @@
 { config, pkgs, ... }: {
-  imports = [ ./dunst.nix ./sway.nix ./gammastep.nix ./mako.nix ./waybar.nix ];
+  imports = [ ./sway.nix ./gammastep.nix ./mako.nix ./waybar.nix ];
 }

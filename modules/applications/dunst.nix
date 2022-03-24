@@ -2,6 +2,7 @@
 let
   cfg = config.this.application.dunst;
   sway = config.this.application.sway;
+  graphical = config.this.graphical;
 in with lib; {
   options = {
     this.application.dunst.enable = mkOption {
@@ -77,8 +78,9 @@ in with lib; {
     };
     systemd.user.services.dunst = {
       enable = true;
-      description = "dunst foo";
-      wantedBy = [ "sway-session.target" ];
+      description = "Dunst";
+      wantedBy = [ "graphical-session.target" ]
+        ++ optional sway.enable [ "sway-session.target" ];
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = ''
