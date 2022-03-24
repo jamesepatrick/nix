@@ -13,10 +13,15 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.james = {
-      # Enable touch controls.
-      home.sessionVariables = { MOZ_USE_XINPUT2 = 1; };
+    environment.sessionVariables = {
+      MOZ_USE_XINPUT2 = "1";
+    } // (if graphical.protocol == "Wayland" then {
+      MOZ_ENABLE_WAYLAND = "1";
+    } else
+      { })
+      // (if sway_cfg.enable then { XDG_CURRENT_DESKTOP = "sway"; } else { });
 
+    home-manager.users.james = {
       programs.firefox = {
         enable = true;
         package = pkgs.firefox.override {
