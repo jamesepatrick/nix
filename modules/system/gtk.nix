@@ -9,6 +9,7 @@ in with lib; {
         numix-cursor-theme
       ];
       home.sessionVariables = { GTK_THEME = "Dracula"; };
+      systemd.user.sessionVariables = { GTK_THEME = "Dracula"; };
 
       xdg.configFile."gtk-3.0/settings.ini".text = ''
         [Settings]

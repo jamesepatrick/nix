@@ -26,6 +26,7 @@ in with lib; {
 
     home-manager.users.james = {
       home.sessionVariables = { XDG_CURRENT_DESKTOP = "sway"; };
+      systemd.user.sessionVariables = { XDG_CURRENT_DESKTOP = "sway"; };
       wayland.windowManager.sway = {
         enable = true;
         package = null;
