@@ -13,13 +13,7 @@ in with lib; {
   config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "james";
-        };
-        gdm.enable = true;
-      };
+      displayManager = { gdm.enable = true; };
     };
   };
 }
