@@ -25,6 +25,5 @@
       LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
       WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
-
   };
 }

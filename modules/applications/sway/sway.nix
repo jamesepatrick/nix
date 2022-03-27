@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.this.application.sway;
+  power = config.this.system.power;
   graphical = config.this.graphical;
   modifier = "Mod4";
   wallpaper = pkgs.fetchurl {

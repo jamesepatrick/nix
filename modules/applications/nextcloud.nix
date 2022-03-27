@@ -17,7 +17,7 @@ in with lib; {
       systemd.user.services = {
         nextcloud = {
           Unit = {
-            Description = "Nextcloud - A slighly more GNU friendly dropbox";
+            Description = "Nextcloud - A slightly more GNU friendly dropbox";
             BindsTo = [ "graphical-session.target" ];
             Wants = [ "graphical-session-pre.target" ];
             After = [ "graphical-session-pre.target" ];
@@ -25,6 +25,7 @@ in with lib; {
 
           Service = {
             Type = "simple";
+            Description = "Nextcloud - A slightly more GNU friendly dropbox";
             ExecStart = "${pkgs.nextcloud-client}/bin/nextclient --background";
             Restart = "on-failure";
             RestartSec = 1;

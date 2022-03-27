@@ -76,16 +76,14 @@ in with lib; {
       '';
 
     };
+
     systemd.user.services.dunst = {
       enable = true;
-      description = "Dunst";
-      wantedBy = [ "graphical-session.target" ]
-        ++ optional sway.enable [ "sway-session.target" ];
+      description = "Notifications ";
+      wantedBy = [ "sway-session.target" ];
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
-        ExecStart = ''
-          ${pkgs.dunst}/bin/dunst
-        '';
+        ExecStart = "${pkgs.dunst}/bin/dunst";
         RestartSec = 5;
         Restart = "always";
       };

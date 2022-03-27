@@ -2,6 +2,7 @@
   imports = [
     ./1password.nix
     ./emacs.nix
+    ./dunst.nix
     ./firefox.nix
     ./gnome-common.nix
     ./kitty.nix
