@@ -4,6 +4,8 @@ let
   power = config.this.system.power;
 in with lib; {
   config = mkIf graphical.enable {
+    services.gvfs.enable = true;
+
     home-manager.users.james = {
       home.packages = with pkgs.gnome;
         [
