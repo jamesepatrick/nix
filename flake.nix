@@ -55,7 +55,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.james = import ./home.nix;
           }
-          { nixpkgs.overlays = [ nur.overlay ]; }
+          { nixpkgs.overlays = [ nur.overlay (import ./pkgs) ]; }
         ];
         system = "x86_64-linux";
       };

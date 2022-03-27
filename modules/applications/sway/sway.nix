@@ -9,10 +9,6 @@ let
     sha256 = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
   };
 
-  brightness-sh = pkgs.callPackage ./scripts/brightness.nix { inherit pkgs; };
-  sway-entry = pkgs.callPackage ./scripts/sway-entry.nix { inherit pkgs; };
-  volume-sh = pkgs.callPackage ./scripts/volume.nix { inherit pkgs; };
-  scripts = [ brightness-sh sway-entry volume-sh ];
 in with lib; {
   options = {
     this.application.sway.enable = mkOption {
@@ -97,12 +93,13 @@ in with lib; {
             "${modifier}+space" =
               "exec $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu)";
             Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-            XF86AudioLowerVolume = "exec ${volume-sh}/bin/volume.sh down";
-            XF86AudioMute = "exec ${volume-sh}/bin/volume.sh mute";
-            XF86AudioRaiseVolume = "exec ${volume-sh}/bin/volume.sh up";
+            XF86AudioLowerVolume = "exec ${pkgs.volume-sh}/bin/volume.sh down";
+            XF86AudioMute = "exec ${pkgs.volume-sh}/bin/volume.sh mute";
+            XF86AudioRaiseVolume = "exec ${pkgs.volume-sh}/bin/volume.sh up";
             XF86MonBrightnessDown =
-              "exec ${brightness-sh}/bin/brightness.sh down";
-            XF86MonBrightnessUp = "exec ${brightness-sh}/bin/brightness.sh up";
+              "exec ${pkgs.brightness-sh}/bin/brightness.sh down";
+            XF86MonBrightnessUp =
+              "exec ${pkgs.brightness-sh}/bin/brightness.sh up";
           };
           # https://github.com/gytis-ivaskevicius/nixfiles/blob/master/home-manager/i3-sway.nix
           modifier = "Mod4";
@@ -114,19 +111,21 @@ in with lib; {
         };
       };
 
-      home.packages = with pkgs;
-        [
-          autotiling
-          dmenu
-          grim
-          imagemagick
-          slurp
-          swayidle
-          swaylock
-          playerctl
-          wl-clipboard
-          wofi
-        ] ++ scripts;
+      home.packages = with pkgs; [
+        autotiling
+        brightness-sh
+        dmenu
+        grim
+        imagemagick
+        playerctl
+        slurp
+        sway-entry
+        swayidle
+        swaylock
+        volume-sh
+        wl-clipboard
+        wofi
+      ];
     };
 
     programs.light.enable = true;
