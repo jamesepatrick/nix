@@ -13,6 +13,6 @@ in with lib; {
     powerManagement.powertop.enable = true;
     services.upower.enable = true;
 
-    environment.systemPackages = with pkgs; [ powertop ];
+    environment.systemPackages = with pkgs; [ powertop tpacpi-bat ];
   };
 }
