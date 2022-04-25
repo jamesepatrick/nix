@@ -10,5 +10,6 @@
     ./nextcloud.nix
     ./spotify.nix
     ./sway
+    ./i3
   ];
 }
