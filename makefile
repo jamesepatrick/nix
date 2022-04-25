@@ -12,6 +12,9 @@ endif
 switch:
 	sudo nixos-rebuild switch --flake .
 
+dry:
+	nixos-rebuild dry-build --flake .
+
 upgrade:
 	sudo nix-channel --update
 	nix flake update
