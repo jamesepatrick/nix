@@ -16,7 +16,7 @@ in with lib; {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     home-manager.users.james = {
       programs.emacs = {
-        package = pkgs.emacsPgtkGcc;
+        package = pkgs.emacsPgtkNativeComp;
         enable = true;
         extraPackages = epkgs: [ epkgs.vterm ];
       };
