@@ -3,7 +3,7 @@
 let
   publicKey = pkgs.fetchurl {
     url = "https://github.com/jamesepatrick.keys";
-    sha256 = "sha256-kMc9RhU7RmoKQQoS/+dMUNJhDQVaal5sgHhzT4qth8g=";
+    sha256 = "sha256-alm6KRFca4VjzTyVEg+j1s0uKaSfvV76o3sgYNAisSA=";
   };
 in {
   imports = [ ../. ../system/xdg.nix ];
