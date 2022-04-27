@@ -9,7 +9,8 @@
     ./kitty.nix
     ./nextcloud.nix
     ./spotify.nix
-    ./sway
+
     ./i3
+    ./sway
   ];
 }

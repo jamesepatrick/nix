@@ -2,10 +2,11 @@
 let
   cfg = config.this.application.gammastep;
   sway = config.this.application.sway;
+  i3 = config.this.application.i3;
 in with lib; {
   options = {
     this.application.gammastep.enable = mkOption {
-      default = sway.enable;
+      default = i3.enable || sway.enable;
       type = with types; bool;
     };
   };
@@ -24,7 +25,7 @@ in with lib; {
     systemd.user.services.gammastep = {
       enable = true;
       description = "Nightly color shifting";
-      wantedBy = [ "sway-session.target" ];
+      wantedBy = [ "sway-session.target" "i3-session.target" ];
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = ''

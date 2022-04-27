@@ -2,11 +2,12 @@
 let
   cfg = config.this.application.dunst;
   sway = config.this.application.sway;
+  i3 = config.this.application.i3;
   graphical = config.this.graphical;
 in with lib; {
   options = {
     this.application.dunst.enable = mkOption {
-      default = sway.enable;
+      default = i3.enable || sway.enable;
       type = with types; bool;
     };
   };

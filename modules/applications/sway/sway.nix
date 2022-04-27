@@ -13,14 +13,12 @@ let
 in with lib; {
   options = {
     this.application.sway.enable = mkOption {
-      default = graphical.enable;
+      default = false;
       type = with types; bool;
     };
   };
 
   config = mkIf cfg.enable {
-    this.graphical.protocol = "Wayland";
-
     home-manager.users.james = {
       home.sessionVariables = { XDG_CURRENT_DESKTOP = "sway"; };
       systemd.user.sessionVariables = { XDG_CURRENT_DESKTOP = "sway"; };

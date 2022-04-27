@@ -11,11 +11,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-
-    environment.sessionVariables = optionals (graphical.protocol == "Wayland") {
-      QT_QPA_PLATFORM = "wayland";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    };
     # home-manager.users.james = {
     #   services.kdeconnect = {
     #     indicator = true;
