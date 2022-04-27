@@ -4,6 +4,7 @@
     ./dunst.nix
     ./emacs.nix
     ./firefox.nix
+    ./gammastep.nix
     ./gnome-common.nix
     ./kdeconnect.nix
     ./kitty.nix
