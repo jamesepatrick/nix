@@ -1,1 +1,1 @@
-{ config, pkgs, ... }: { imports = [ ./i3.nix ]; }
+{ config, pkgs, ... }: { imports = [ ./i3.nix ./picom.nix ]; }

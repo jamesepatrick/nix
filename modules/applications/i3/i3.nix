@@ -19,6 +19,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     programs.dconf.enable = true;
+    programs.light.enable = true;
 
     services.xserver = {
       enable = true;
@@ -39,7 +40,8 @@ in with lib; {
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
           feh
-          nitrogen
+          xdotool
+          playerctl
           dmenu # application launcher most people use
           i3status # gives you the default i3 status bar
           i3lock # default i3 screen locker
@@ -95,7 +97,18 @@ in with lib; {
           };
           terminal = "${pkgs.kitty}/bin/kitty";
           keybindings = mkOptionDefault {
+            "${modifier}+l" = "focus left";
+            "${modifier}+k" = "focus up";
+            "${modifier}+j" = "focus down";
+            "${modifier}+h" = "focus right";
+            "${modifier}+shift+l" = "move left";
+            "${modifier}+shift+k" = "move up";
+            "${modifier}+shift+j" = "move down";
+            "${modifier}+shift+h" = "move right";
+
+            "${modifier}+s" = "split h";
             "${modifier}+q" = "kill";
+            "${modifier}+alt+s" = "layout stacking";
             "${modifier}+d" = "focus mode_toggle";
             "${modifier}+a" = "focus parent";
             "${modifier}+shift+s" = "sticky toggle";
