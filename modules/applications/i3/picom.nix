@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.picom;
+  cfg = config.this.application.i3.picom;
   i3 = config.this.application.i3;
 
 in with lib; {
   options = {
-    this.application.picom.enable = mkOption {
+    this.application.i3.picom.enable = mkOption {
       default = i3.enable;
       type = with types; bool;
     };
