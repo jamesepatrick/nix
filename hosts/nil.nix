@@ -34,7 +34,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  this.systems.zfs.enable = true;
+  this.systems = {
+    zfs.enable = true;
+    yubikey.enable = true;
+  };
 
   networking = {
     # This is required for the zfs module as well. Must be unique. Run the following head -c4  /dev/urandom | od -A none -t x4

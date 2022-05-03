@@ -8,6 +8,7 @@
     ./gtk.nix
     ./power.nix
     ./xdg.nix
+    ./yubikey.nix
     ./zfs.nix
   ];
 }
