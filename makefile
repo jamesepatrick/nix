@@ -10,7 +10,7 @@ endif
 .ONESHELL:
 
 switch:
-	sudo nixos-rebuild switch --flake .
+	sudo nixos-rebuild --use-remote-sudo switch  --flake .
 
 dry:
 	nixos-rebuild dry-build --flake .
@@ -18,3 +18,4 @@ dry:
 upgrade:
 	sudo nix-channel --update
 	nix flake update
+	sudo nixos-rebuild --use-remote-sudo --upgrade-all switch  --flake .
