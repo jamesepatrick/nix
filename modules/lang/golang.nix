@@ -20,7 +20,6 @@ in with lib; {
 
       home.packages = with pkgs; [
         air
-        gcc
         gocode
         golangci-lint
         gomodifytags
@@ -30,5 +29,6 @@ in with lib; {
         gotests
       ];
     };
+    environment.systemPackages = with pkgs; [ gcc gccgo go libcap ];
   };
 }
