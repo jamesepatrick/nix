@@ -3,11 +3,7 @@ let graphical = config.this.graphical;
 in with lib; {
   config = mkIf graphical.enable {
     home-manager.users.james = {
-      home.packages = with pkgs; [
-        dracula-theme
-        kora-icon-theme
-        numix-cursor-theme
-      ];
+      home.packages = with pkgs; [ dracula-theme kora-icon-theme ];
       home.sessionVariables = { GTK_THEME = "Dracula"; };
       systemd.user.sessionVariables = { GTK_THEME = "Dracula"; };
 
@@ -15,7 +11,6 @@ in with lib; {
         [Settings]
         gtk-theme-name=Dracula
         gtk-icon-theme-name=kora
-        gtk-cursor-theme-name=Numix-Cursor
         gtk-fallback-icon-theme=gnome
         gtk-application-prefer-dark-theme=true
         gtk-xft-hinting=1

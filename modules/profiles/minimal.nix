@@ -6,7 +6,11 @@ let
     sha256 = "sha256-alm6KRFca4VjzTyVEg+j1s0uKaSfvV76o3sgYNAisSA=";
   };
 in {
-  imports = [ ../. ../system/xdg.nix ];
+
+  imports = [
+    ../. # This imports /modules/default.nix
+    ../system/xdg.nix
+  ];
   # Allow Cleanup, nix, & flakes
   nix = {
     settings = {

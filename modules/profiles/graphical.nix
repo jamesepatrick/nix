@@ -1,10 +1,5 @@
 { config, lib, pkgs, ... }: {
-  imports = [
-    ../applications/firefox.nix
-    ../applications/nextcloud.nix
-    ../system/gtk.nix
-    ./minimal.nix
-  ];
+  imports = [ ./minimal.nix ];
 
   this = {
     graphical.enable = true;

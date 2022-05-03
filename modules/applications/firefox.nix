@@ -65,6 +65,8 @@ in with lib; {
         };
       };
 
+      home.packages = with pkgs; [ tridactyl-native ];
+
       # This is a bit silly as this is currently managed by my make dot config.
       xdg.configFile."tridactyl/tridactylrc".source = pkgs.fetchurl {
         url =
