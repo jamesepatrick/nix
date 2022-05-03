@@ -9,7 +9,7 @@ in {
         fira-code
         fira-code-symbols
         font-awesome
-        hasklig
+        (nerdfonts.override { fonts = [ "Hasklig" ]; })
         inter
         liberation_ttf
         noto-fonts
