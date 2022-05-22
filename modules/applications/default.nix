@@ -8,6 +8,7 @@
     ./gnome-common.nix
     ./kdeconnect.nix
     ./kitty.nix
+    ./media.nix
     ./nextcloud.nix
     ./spotify.nix
 
