@@ -11,6 +11,7 @@
     ./media.nix
     ./nextcloud.nix
     ./spotify.nix
+    ./zeal.nix
 
     ./i3
     ./sway
