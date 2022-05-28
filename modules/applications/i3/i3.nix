@@ -98,14 +98,14 @@ in with lib; {
           };
           terminal = "${pkgs.kitty}/bin/kitty";
           keybindings = mkOptionDefault {
-            "${modifier}+l" = "focus left";
+            "${modifier}+h" = "focus left";
             "${modifier}+k" = "focus up";
             "${modifier}+j" = "focus down";
-            "${modifier}+h" = "focus right";
-            "${modifier}+shift+l" = "move left";
+            "${modifier}+l" = "focus right";
+            "${modifier}+shift+h" = "move left";
             "${modifier}+shift+k" = "move up";
             "${modifier}+shift+j" = "move down";
-            "${modifier}+shift+h" = "move right";
+            "${modifier}+shift+l" = "move right";
 
             "${modifier}+s" = "split h";
             "${modifier}+q" = "kill";
