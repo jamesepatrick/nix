@@ -39,12 +39,12 @@ in with lib; {
         enable = true;
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
-          dmenu # application launcher most people use
           feh
           i3blocks # if you are planning on using i3blocks over i3status
           i3lock # default i3 screen locker
           i3status # gives you the default i3 status bar
           playerctl
+          rofi
           xclip
           xdotool
         ];
@@ -114,8 +114,7 @@ in with lib; {
             "${modifier}+a" = "focus parent";
             "${modifier}+shift+s" = "sticky toggle";
             "${modifier}+shift+f" = "floating toggle";
-            "${modifier}+space" =
-              "exec $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu)";
+            "${modifier}+space" = "exec rofi -show drun";
             Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             XF86AudioLowerVolume = "exec ${pkgs.volume-sh}/bin/volume.sh down";
             XF86AudioMute = "exec ${pkgs.volume-sh}/bin/volume.sh mute";
