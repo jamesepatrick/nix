@@ -44,6 +44,7 @@ in with lib; {
           i3lock # default i3 screen locker
           i3status # gives you the default i3 status bar
           playerctl
+          scrot
           rofi
           xclip
           xdotool
