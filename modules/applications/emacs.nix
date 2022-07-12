@@ -16,13 +16,17 @@ in with lib; {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     home-manager.users.james = {
       programs.emacs = {
-        package = pkgs.emacsPgtkNativeComp;
+        package = pkgs.emacs28NativeComp;
         enable = true;
         extraPackages = epkgs: [ epkgs.vterm ];
       };
 
       home.packages = with pkgs; [
         (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+        editorconfig-core-c
+        fd
+        graphviz
+        html-tidy
         ripgrep
         sqlite
         wordnet
