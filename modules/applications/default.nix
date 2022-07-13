@@ -14,6 +14,5 @@
     ./zeal.nix
 
     ./i3
-    ./sway
   ];
 }

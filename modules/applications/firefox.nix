@@ -2,7 +2,6 @@
 let
   cfg = config.this.application.firefox;
   graphical = config.this.graphical;
-  sway_cfg = config.this.application.sway;
 in with lib; {
   options = {
     this.application.firefox.enable = mkOption {
@@ -18,12 +17,8 @@ in with lib; {
     home-manager.users.james = {
       programs.firefox = {
         enable = true;
-        package = pkgs.firefox.override {
-          cfg = {
-            enableTridactylNative = true;
-            forceWayland = sway_cfg.enable;
-          };
-        };
+        package =
+          pkgs.firefox.override { cfg = { enableTridactylNative = true; }; };
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           https-everywhere

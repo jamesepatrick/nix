@@ -1,13 +1,12 @@
 { options, config, lib, pkgs, ... }:
 let
   cfg = config.this.application.dunst;
-  sway = config.this.application.sway;
   i3 = config.this.application.i3;
   graphical = config.this.graphical;
 in with lib; {
   options = {
     this.application.dunst.enable = mkOption {
-      default = i3.enable || sway.enable;
+      default = i3.enable;
       type = with types; bool;
     };
   };
@@ -81,7 +80,7 @@ in with lib; {
     systemd.user.services.dunst = {
       enable = true;
       description = "Notifications ";
-      wantedBy = [ "sway-session.target" ];
+      wantedBy = [ "i3-session.target" ];
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.dunst}/bin/dunst";
