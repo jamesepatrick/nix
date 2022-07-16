@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
-let cfg = config.this.systems.zfs;
+let cfg = config.this.system.zfs;
 in with lib; {
-  options.this.systems.zfs.enable = mkEnableOption "zfs";
+  options.this.system.zfs.enable = mkEnableOption "zfs";
 
   config = mkIf cfg.enable {
     boot = {

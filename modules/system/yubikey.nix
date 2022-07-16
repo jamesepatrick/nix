@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.systems.yubikey;
+  cfg = config.this.system.yubikey;
   graphical = config.this.graphical;
 in with lib; {
-  options.this.systems.yubikey.enable = mkEnableOption "Yubikey";
+  options.this.system.yubikey.enable = mkEnableOption "Yubikey";
 
   config = mkIf cfg.enable {
     services.udev.packages = with pkgs; [ yubikey-personalization ];

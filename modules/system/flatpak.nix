@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.systems.flatpak;
+  cfg = config.system.flatpak;
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    systems.flatpak.enable = mkOption {
+    system.flatpak.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

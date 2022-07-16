@@ -34,7 +34,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  this.systems = {
+  this.system = {
     zfs.enable = true;
     yubikey.enable = true;
   };
