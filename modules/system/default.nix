@@ -6,6 +6,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./gtk.nix
+    ./keyring.nix
     ./power.nix
     ./xdg.nix
     ./yubikey.nix

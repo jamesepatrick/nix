@@ -2,6 +2,7 @@
 let
   graphical = config.this.graphical;
   power = config.this.system.power;
+  keyring = config.this.system.keyring;
 in with lib; {
   config = mkIf graphical.enable {
     services.gvfs.enable = true;
@@ -29,9 +30,9 @@ in with lib; {
           libgnome-keyring
           nautilus
           pomodoro
-          seahorse
           sushi
-        ] ++ optionals (power.enable) [ gnome-power-manager ];
+        ] ++ optionals (power.enable) [ gnome-power-manager ]
+        ++ optionals (keyring.enable) [ seahorse ];
     };
   };
 }
