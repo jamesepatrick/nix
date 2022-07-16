@@ -13,24 +13,22 @@ in with lib; {
   config = mkIf cfg.enable {
     home-manager.users.james = {
       home.packages = with pkgs; [ nextcloud-client ];
+    };
 
-      systemd.user.services = {
-        nextcloud = {
-          Unit = {
-            Description = "Nextcloud - A slightly more GNU friendly dropbox";
-            BindsTo = [ "graphical-session.target" ];
-            Wants = [ "graphical-session-pre.target" ];
-            After = [ "graphical-session-pre.target" ];
-          };
-
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
-            Environment = "QT_XCB_GL_INTEGRATION=none";
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
+    systemd.user.services = {
+      nextcloud = {
+        enable = true;
+        description =
+          "Nextcloud Client - A slightly more GNU friendly dropbox ";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
+          Environment = "QT_XCB_GL_INTEGRATION=none";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
         };
       };
     };
