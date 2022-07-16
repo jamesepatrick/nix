@@ -25,8 +25,8 @@ in with lib; {
 
           Service = {
             Type = "simple";
-            Description = "Nextcloud - A slightly more GNU friendly dropbox";
-            ExecStart = "${pkgs.nextcloud-client}/bin/nextclient --background";
+            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
+            Environment = "QT_XCB_GL_INTEGRATION=none";
             Restart = "on-failure";
             RestartSec = 1;
             TimeoutStopSec = 10;
