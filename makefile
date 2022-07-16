@@ -19,3 +19,7 @@ upgrade:
 	sudo nix-channel --update
 	nix flake update
 	sudo nixos-rebuild --use-remote-sudo --upgrade-all switch  --flake .
+
+clean:
+	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +2
+	sudo nix-collect-garbage --delete-older-than 5d
