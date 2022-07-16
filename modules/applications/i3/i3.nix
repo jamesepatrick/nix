@@ -45,7 +45,6 @@ in with lib; {
           i3status # gives you the default i3 status bar
           playerctl
           scrot
-          rofi
           xclip
           xdotool
         ];
@@ -57,6 +56,7 @@ in with lib; {
         enable = true;
         package = pkgs.i3-gaps;
         config = {
+          bars = [ ];
           colors = {
             focusedInactive = {
               background = "#1E1E2E";
@@ -129,6 +129,7 @@ in with lib; {
           startup = [
             { command = "${pkgs.autotiling}/bin/autotiling"; }
             { command = "${pkgs.feh}/bin/feh --bg-scale ${wallpaper}"; }
+            { command = "systemctl --user restart polybar.service"; }
           ];
         };
       };
