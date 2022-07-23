@@ -3,7 +3,6 @@
     ./1password.nix
     ./dunst.nix
     ./emacs.nix
-    ./firefox.nix
     ./gammastep.nix
     ./gnome-common.nix
     ./kdeconnect.nix
@@ -14,5 +13,6 @@
     ./zeal.nix
 
     ./i3
+    ./firefox
   ];
 }
