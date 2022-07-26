@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
     ./1password.nix
+    ./blueman.nix
     ./dunst.nix
     ./emacs.nix
     ./gammastep.nix
