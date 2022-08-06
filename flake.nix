@@ -31,7 +31,7 @@
     utils.lib.mkFlake {
       hosts = {
         nil.modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
+          nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
           ./hosts/nil.nix
         ];
       };
@@ -39,16 +39,16 @@
       # Shared logic below.
       inherit self inputs;
       supportedSystems = [ "x86_64-linux" ];
+
       channels.nixpkgs = {
         input = nixpkgs;
         overlaysBuilder = channels: [ ];
       };
       channelsConfig = { allowUnfree = true; };
+
       sharedOverlays = [ nur.overlay emacs-overlay.overlay ];
       hostDefaults = {
         modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
-          ./hosts/nil.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
