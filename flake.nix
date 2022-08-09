@@ -28,17 +28,17 @@
 
   outputs = inputs@{ self, utils, nixpkgs, nixos-hardware, nur, home-manager
     , emacs-overlay, ... }:
-    utils.lib.mkFlake {
+    let inherit (utils.lib) mkFlake exportModules;
+    in mkFlake {
+
+      inherit self inputs;
+      supportedSystems = [ "x86_64-linux" ];
       hosts = {
         nil.modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
           ./hosts/nil.nix
         ];
       };
-
-      # Shared logic below.
-      inherit self inputs;
-      supportedSystems = [ "x86_64-linux" ];
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -59,6 +59,5 @@
         ];
         system = "x86_64-linux";
       };
-
     };
 }
