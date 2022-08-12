@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.system.displaymanager;
+  cfg = config.this.system.displaymanager;
   graphical = config.this.graphical;
 in with lib; {
   options = {
-    system.displaymanager.enable = mkOption {
+    this.system.displaymanager.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

@@ -28,8 +28,17 @@
 
   outputs = inputs@{ self, utils, nixpkgs, nixos-hardware, nur, home-manager
     , emacs-overlay, ... }:
-    let inherit (utils.lib) mkFlake exportModules;
+    let
+      inherit (utils.lib) mkFlake;
+      inherit (self.lib.my) mapModules mapModulesRec';
     in mkFlake {
+      lib = nixpkgs.lib.extend (self: super: {
+        my = import ./lib {
+          inherit inputs;
+          pkgs = nixpkgs;
+          lib = self;
+        };
+      });
 
       inherit self inputs;
       supportedSystems = [ "x86_64-linux" ];
@@ -48,7 +57,7 @@
 
       sharedOverlays = [ nur.overlay emacs-overlay.overlay ];
       hostDefaults = {
-        modules = [
+        modules = mapModulesRec' ./modules import ++ [
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

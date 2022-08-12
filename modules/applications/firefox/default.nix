@@ -3,7 +3,6 @@ let
   cfg = config.this.application.firefox;
   graphical = config.this.graphical;
 in with lib; {
-  imports = [ ./tridactyl.nix ];
   options.this.application.firefox = {
     enable = mkOption {
       default = graphical.enable;

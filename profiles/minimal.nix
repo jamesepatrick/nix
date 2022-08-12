@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 let
   publicKey = pkgs.fetchurl {
@@ -8,8 +8,8 @@ let
 in {
 
   imports = [
-    ../modules/. # This imports /modules/default.nix
-    ../modules/system/xdg.nix
+    #../modules/. # This imports /modules/default.nix
+    #../modules/system/xdg.nix
   ];
   # Allow Cleanup, nix, & flakes
   nix = {
