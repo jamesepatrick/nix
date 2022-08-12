@@ -4,9 +4,8 @@ let
   graphical = config.this.graphical;
   modifier = "Mod4";
   wallpaper = pkgs.fetchurl {
-    url =
-      "https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/evening-sky.png";
-    sha256 = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
+    url = "https://i.imgur.com/6B4Hgw0.jpeg";
+    sha256 = "sha256-dErBslKRBTLKbTTUanIPDwX8CcMJ0Kpi3oof0oXlHys=";
   };
 
 in with lib; {
@@ -47,6 +46,11 @@ in with lib; {
           scrot
           xclip
           xdotool
+          xorg.xrandr
+          autorandr
+          arandr
+          stalonetray
+          pavucontrol
         ];
       };
     };
@@ -59,6 +63,7 @@ in with lib; {
           bars = [ ];
           colors = {
             focusedInactive = {
+
               background = "#1E1E2E";
               border = "#1E1E2E";
               childBorder = "#1E1E2E";
@@ -128,7 +133,7 @@ in with lib; {
           modifier = "Mod4";
           startup = [
             { command = "${pkgs.autotiling}/bin/autotiling"; }
-            { command = "${pkgs.feh}/bin/feh --bg-scale ${wallpaper}"; }
+            { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
             { command = "systemctl --user restart polybar.service"; }
           ];
         };
