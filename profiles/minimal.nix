@@ -8,8 +8,8 @@ let
 in {
 
   imports = [
-    ../. # This imports /modules/default.nix
-    ../system/xdg.nix
+    ../modules/. # This imports /modules/default.nix
+    ../modules/system/xdg.nix
   ];
   # Allow Cleanup, nix, & flakes
   nix = {

@@ -30,7 +30,7 @@
 
 {
   imports = [
-    ../modules/profiles/laptop.nix
+    ../profiles/laptop.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
