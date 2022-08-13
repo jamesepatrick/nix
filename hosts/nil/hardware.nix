@@ -1,6 +1,5 @@
-# This is nil.
-# Nil is my current personal machine. It is a AMD Thinkpad T14 G2 with the follow specs;
-#
+# Build Specs
+# ###############################################################################
 # Onboard Memory: 16 GB DDR4 3200MHz (Soldered) Note: This can support another stick of RAM.
 # Wireless: Realtek 8852AE 802.11AX (2 x 2) & Bluetooth® 5.2
 # Processor: AMD Ryzen™ 5 Pro 5650U Processor (2.30 GHz, up to 4.20 GHz Max Boost, 6 Cores, 12 Threads, 16 MB Cache)
@@ -26,14 +25,7 @@
 #           ├─rpool/root        zfs
 #           ├─rpool/root/nixos  zfs      /
 #           └─rpool/home        zfs      /home
-{ config, lib, pkgs, modulesPath, ... }:
-
-{
-  imports = [
-    ../profiles/laptop.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
+{ self, config, lib, pkgs, modulesPath, ... }: {
   this.system = {
     zfs.enable = true;
     yubikey.enable = true;
@@ -70,17 +62,16 @@
         "cryptd"
       ];
       kernelModules = [ "dm-snapshot" ];
+      luks.devices."crypt" = {
+        device = "/dev/disk/by-partlabel/crypt";
+        preLVM = true;
+      };
     };
     kernelModules = [ "kvm-amd" ];
     # Need for https://github.com/NixOS/nixpkgs/issues/177844
     kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.16")
       pkgs.linuxPackages_latest;
     supportedFilesystems = [ "zfs" ];
-  };
-
-  boot.initrd.luks.devices."crypt" = {
-    device = "/dev/disk/by-partlabel/crypt";
-    preLVM = true;
   };
 
   fileSystems = {
@@ -99,12 +90,4 @@
   };
 
   swapDevices = [{ device = "/dev/partitions/swap"; }];
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
 }

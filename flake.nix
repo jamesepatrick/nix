@@ -45,7 +45,7 @@
       hosts = {
         nil.modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
-          ./hosts/nil.nix
+          ./hosts/nil
         ];
       };
 
