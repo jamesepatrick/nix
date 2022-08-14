@@ -8,22 +8,6 @@ in {
     #../modules/system/xdg.nix
   ];
   # Allow Cleanup, nix, & flakes
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      allowed-users = [ "@wheel" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "daily";
-    };
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Locale
   time.timeZone = "America/New_York";
