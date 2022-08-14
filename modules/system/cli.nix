@@ -1,17 +1,27 @@
-{ config, pkgs, ... }: {
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
+{ config, lib, pkgs, ... }:
+let extras = config.my.system.cli.extras;
+in with lib; {
+  options = {
+    my.system.cli.extras = {
+      enable = mkOption {
+        default = true;
+        type = with types; bool;
+      };
+      pkgs = mkOption {
+        default = with pkgs; [ htop silver-searcher jq ripgrep tmux ];
+        type = with types; listOf package;
+      };
+    };
   };
-  environment.systemPackages = with pkgs; [
-    cmake
-    htop
-    jq
-    killall
-    ripgrep
-    silver-searcher
-    tmux
-    unzip
-    zsh
-  ];
+  config = {
+
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+    };
+
+    environment.systemPackages = with pkgs;
+      [ gnumake git vim killall unzip zsh ]
+      ++ optionals (extras.enable) extras.pkgs;
+  };
 }
