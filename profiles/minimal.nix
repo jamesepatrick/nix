@@ -9,14 +9,6 @@ in {
   ];
   # Allow Cleanup, nix, & flakes
 
-  # Locale
-  time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     root.initialPassword = "nixos";
