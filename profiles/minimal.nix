@@ -1,10 +1,6 @@
 { inputs, config, pkgs, ... }:
 
 let
-  publicKey = pkgs.fetchurl {
-    url = "https://github.com/jamesepatrick.keys";
-    sha256 = "sha256-alm6KRFca4VjzTyVEg+j1s0uKaSfvV76o3sgYNAisSA=";
-  };
 in {
 
   imports = [
@@ -45,7 +41,6 @@ in {
       extraGroups = [ "wheel" "systemd-journal" ];
       initialPassword = "nixos";
       isNormalUser = true;
-      openssh.authorizedKeys.keyFiles = [ publicKey ];
       shell = pkgs.zsh;
     };
   };
@@ -70,10 +65,4 @@ in {
     enableSSHSupport = true;
   };
 
-  # Openssh settings for security
-  services.openssh = {
-    enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false;
-  };
 }
