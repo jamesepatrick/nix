@@ -10,15 +10,6 @@ in {
   # These are the most basic tools I need.
   environment.systemPackages = with pkgs; [ nixfmt git gnumake vim zsh ];
 
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 443 80 ];
-      allowedUDPPorts = [ 443 80 ];
-      allowPing = false;
-    };
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
