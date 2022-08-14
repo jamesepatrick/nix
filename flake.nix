@@ -4,34 +4,39 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, utils, nixpkgs, nixos-hardware, nur, home-manager
-    , emacs-overlay, ... }:
+  outputs =
+    inputs@{ self
+    , emacs-overlay
+    , home-manager
+    , nixos-hardware
+    , nixpkgs
+    , nur
+    , utils
+    , ...
+    }:
     let
       inherit (utils.lib) mkFlake;
       inherit (self.lib.my) mapModules mapModulesRec';
-    in mkFlake {
+    in
+    mkFlake {
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
           inherit inputs;
