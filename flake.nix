@@ -48,10 +48,7 @@
       inherit self inputs;
       supportedSystems = [ "x86_64-linux" ];
       hosts = {
-        nil.modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
-          ./hosts/nil
-        ];
+        nil.modules = [ ./hosts/nil ];
       };
 
       channels.nixpkgs = {

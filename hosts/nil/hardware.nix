@@ -25,7 +25,9 @@
 #           ├─rpool/root        zfs
 #           ├─rpool/root/nixos  zfs      /
 #           └─rpool/home        zfs      /home
-{ self, config, lib, pkgs, modulesPath, ... }: {
+{ self, config, nixos-hardware, lib, pkgs, modulesPath, ... }: {
+  imports =
+    [ nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2 ];
   my.system = {
     zfs.enable = true;
     yubikey.enable = true;
