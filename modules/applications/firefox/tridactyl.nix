@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.my.application.firefox.tridactyl;
+  this = config.my.application.firefox.tridactyl;
   firefox = config.my.application.firefox;
 in with lib; {
   options = {
@@ -11,9 +11,9 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     # firefox.pkg =
-    #   pkgs.firefox.override { cfg = { enableTridactylNative = true; }; };
+    #   pkgs.firefox.override { this = { enableTridactylNative = true; }; };
     home-manager.users.james = {
       programs.firefox = {
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [ tridactyl ];

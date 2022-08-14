@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.i3.polybar;
+  this = config.my.application.i3.polybar;
   i3 = config.my.application.i3;
   colors = {
     alert = "#A54242";
@@ -19,7 +19,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     home-manager.users.james = {
       services.polybar = {
         enable = true;

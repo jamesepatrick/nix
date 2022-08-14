@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.system.flatpak;
+  this = config.system.flatpak;
   graphical = config.my.graphical;
 in with lib; {
   options = {
@@ -10,7 +10,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     services.flatpak.enable = true;
     xdg.portal = {
       enable = true;

@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.lang.golang;
+  this = config.my.lang.golang;
   graphical = config.my.graphical;
 in with lib; {
   options = {
@@ -10,7 +10,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     home-manager.users.james = {
       programs.go = {
         enable = true;

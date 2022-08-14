@@ -2,7 +2,7 @@
 # TODO Still need the following dependecies
 #  - Language tools (grammer)
 let
-  cfg = config.my.application.emacs;
+  this = config.my.application.emacs;
   graphical = config.my.graphical;
 in with lib; {
   options = {
@@ -12,7 +12,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     home-manager.users.james = {
       programs.emacs = {

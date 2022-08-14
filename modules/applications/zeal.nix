@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.zeal;
+  this = config.my.application.zeal;
   graphical = config.my.graphical;
 in with lib; {
   options = {
@@ -10,7 +10,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     home-manager.users.james.home.packages = with pkgs; [ zeal ];
   };
 }

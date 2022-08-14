@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.i3;
+  this = config.my.application.i3;
   graphical = config.my.graphical;
   modifier = "Mod4";
   wallpaper = pkgs.fetchurl {
@@ -16,7 +16,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     programs.dconf.enable = true;
     programs.light.enable = true;
 

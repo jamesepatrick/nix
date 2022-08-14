@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.onepassword;
+  this = config.my.application.onepassword;
   graphical = config.my.graphical;
-  enable = (cfg.gui.enable || cfg.cli.enable);
+  enable = (this.gui.enable || this.cli.enable);
 in with lib; {
   options = {
     my.application.onepassword.gui.enable = mkOption {
@@ -10,16 +10,16 @@ in with lib; {
       type = with types; bool;
     };
     my.application.onepassword.cli.enable = mkOption {
-      default = (graphical.enable || cfg.gui.enable);
+      default = (graphical.enable || this.gui.enable);
       type = with types; bool;
     };
   };
 
   config = mkIf enable (mkMerge [
-    (mkIf cfg.cli.enable {
+    (mkIf this.cli.enable {
       home-manager.users.james.home.packages = with pkgs; [ _1password ];
     })
-    (mkIf cfg.gui.enable {
+    (mkIf this.gui.enable {
       home-manager.users.james = {
         home.packages = with pkgs; [ _1password-gui ];
       };

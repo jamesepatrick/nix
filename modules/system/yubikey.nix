@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.system.yubikey;
+  this = config.my.system.yubikey;
   graphical = config.my.graphical;
 in with lib; {
   options.my.system.yubikey.enable = mkEnableOption "Yubikey";
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     services.udev.packages = with pkgs; [ yubikey-personalization ];
 
     environment.shellInit = ''

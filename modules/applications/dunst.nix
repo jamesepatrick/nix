@@ -1,6 +1,6 @@
 { options, config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.dunst;
+  this = config.my.application.dunst;
   i3 = config.my.application.i3;
   graphical = config.my.graphical;
 in with lib; {
@@ -11,7 +11,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     home-manager.users.james = {
       systemd.user.startServices = true;
       services.dunst.enable = true;

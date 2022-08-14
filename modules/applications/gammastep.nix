@@ -1,6 +1,6 @@
 { options, config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.gammastep;
+  this = config.my.application.gammastep;
   i3 = config.my.application.i3;
 in with lib; {
   options = {
@@ -10,7 +10,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     home-manager.users.james = {
       services.gammastep = {
         enable = true;

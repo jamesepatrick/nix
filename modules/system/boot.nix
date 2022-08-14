@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-let cfg = config.my.system.boot;
+let this = config.my.system.boot;
 in with lib; {
   options.my.system.boot.enable = mkOption {
     default = true;
@@ -7,7 +7,7 @@ in with lib; {
     description = "Is there a physical power button?";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     boot = {
       # Enable bootloader & clear /tmp on boot.
       cleanTmpDir = true;

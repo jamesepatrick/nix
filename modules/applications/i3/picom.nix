@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.application.i3.picom;
+  this = config.my.application.i3.picom;
   i3 = config.my.application.i3;
 
 in with lib; {
@@ -11,7 +11,7 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf this.enable {
     services.picom = {
       enable = true;
       backend = "glx";
