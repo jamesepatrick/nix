@@ -59,13 +59,10 @@
         overlaysBuilder = channels: [ ];
       };
       channelsConfig = { allowUnfree = true; };
-
-      sharedOverlays = [ nur.overlay emacs-overlay.overlay ];
+      sharedOverlays = [ nur.overlay (import ./pkgs) emacs-overlay.overlay ];
       hostDefaults = {
-        modules = mapModulesRec' ./modules import ++ [
-          { nixpkgs.overlays = [ nur.overlay (import ./pkgs) ]; }
-        ];
         specialArgs = { inherit home-manager nixos-hardware; };
+        modules = mapModulesRec' ./modules import;
         system = "x86_64-linux";
       };
     };
