@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-let graphical = config.this.graphical;
+let graphical = config.my.graphical;
 in {
   config = lib.mkIf graphical.enable {
     fonts = {

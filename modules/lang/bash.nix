@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.lang.bash;
-  graphical = config.this.graphical;
+  cfg = config.my.lang.bash;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.lang.bash.enable = mkOption {
+    my.lang.bash.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

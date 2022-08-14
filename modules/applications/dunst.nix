@@ -1,11 +1,11 @@
 { options, config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.dunst;
-  i3 = config.this.application.i3;
-  graphical = config.this.graphical;
+  cfg = config.my.application.dunst;
+  i3 = config.my.application.i3;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.dunst.enable = mkOption {
+    my.application.dunst.enable = mkOption {
       default = i3.enable;
       type = with types; bool;
     };

@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.this.application.firefox.tridactyl;
-  firefox = config.this.application.firefox;
+  cfg = config.my.application.firefox.tridactyl;
+  firefox = config.my.application.firefox;
 in with lib; {
   options = {
-    this.application.firefox.tridactyl.enable = mkOption {
+    my.application.firefox.tridactyl.enable = mkOption {
       default = firefox.enable;
       type = with types; bool;
       description = "";

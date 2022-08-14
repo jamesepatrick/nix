@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.system.flatpak;
-  graphical = config.this.graphical;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
     system.flatpak.enable = mkOption {

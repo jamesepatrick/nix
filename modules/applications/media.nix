@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.media;
-  graphical = config.this.graphical;
+  cfg = config.my.application.media;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.media.enable = mkOption {
+    my.application.media.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

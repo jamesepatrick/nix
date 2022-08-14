@@ -2,11 +2,11 @@
 # TODO Still need the following dependecies
 #  - Language tools (grammer)
 let
-  cfg = config.this.application.emacs;
-  graphical = config.this.graphical;
+  cfg = config.my.application.emacs;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.emacs.enable = mkOption {
+    my.application.emacs.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.i3;
-  graphical = config.this.graphical;
+  cfg = config.my.application.i3;
+  graphical = config.my.graphical;
   modifier = "Mod4";
   wallpaper = pkgs.fetchurl {
     url = "https://i.imgur.com/6B4Hgw0.jpeg";
@@ -10,7 +10,7 @@ let
 
 in with lib; {
   options = {
-    this.application.i3.enable = mkOption {
+    my.application.i3.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

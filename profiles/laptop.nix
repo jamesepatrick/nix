@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [ ./graphical.nix ];
-  this.system.boot.enable = true;
+  my.system.boot.enable = true;
   networking.networkmanager.enable = true;
   users.users.james.extraGroups = [ "networkmanager" ];
 }

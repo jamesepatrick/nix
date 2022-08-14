@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
-let cfg = config.this.system.boot;
+let cfg = config.my.system.boot;
 in with lib; {
-  options.this.system.boot.enable = mkOption {
+  options.my.system.boot.enable = mkOption {
     default = true;
     type = with types; bool;
     description = "Is there a physical power button?";

@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.this.application.firefox;
-  graphical = config.this.graphical;
+  cfg = config.my.application.firefox;
+  graphical = config.my.graphical;
 in with lib; {
-  options.this.application.firefox = {
+  options.my.application.firefox = {
     enable = mkOption {
       default = graphical.enable;
       type = with types; bool;

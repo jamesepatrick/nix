@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [ ./minimal.nix ];
 
-  this = {
+  my = {
     graphical.enable = true;
     system.power.enable = true;
   };

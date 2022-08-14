@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.i3.polybar;
-  i3 = config.this.application.i3;
+  cfg = config.my.application.i3.polybar;
+  i3 = config.my.application.i3;
   colors = {
     alert = "#A54242";
     background = "#000000";
@@ -13,7 +13,7 @@ let
   };
 in with lib; {
   options = {
-    this.application.i3.polybar.enable = mkOption {
+    my.application.i3.polybar.enable = mkOption {
       default = i3.enable;
       type = with types; bool;
     };

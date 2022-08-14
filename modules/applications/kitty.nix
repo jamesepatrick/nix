@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.kitty;
-  graphical = config.this.graphical;
+  cfg = config.my.application.kitty;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.kitty.enable = mkOption {
+    my.application.kitty.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

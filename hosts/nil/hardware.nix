@@ -26,7 +26,7 @@
 #           ├─rpool/root/nixos  zfs      /
 #           └─rpool/home        zfs      /home
 { self, config, lib, pkgs, modulesPath, ... }: {
-  this.system = {
+  my.system = {
     zfs.enable = true;
     yubikey.enable = true;
   };

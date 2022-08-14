@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.kdeconnect;
-  graphical = config.this.graphical;
+  cfg = config.my.application.kdeconnect;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.kdeconnect.enable = mkOption {
+    my.application.kdeconnect.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

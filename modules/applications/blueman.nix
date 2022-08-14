@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.blueman;
-  graphical = config.this.graphical;
+  cfg = config.my.application.blueman;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.blueman.enable = mkOption {
+    my.application.blueman.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

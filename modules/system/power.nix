@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
-let cfg = config.this.system.power;
+let cfg = config.my.system.power;
 in with lib; {
-  options.this.system.power.enable = mkEnableOption "Power Management";
+  options.my.system.power.enable = mkEnableOption "Power Management";
 
   config = mkIf cfg.enable {
     # fan control modules

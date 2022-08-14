@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.zathura;
-  graphical = config.this.graphical;
+  cfg = config.my.application.zathura;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.zathura.enable = mkOption {
+    my.application.zathura.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

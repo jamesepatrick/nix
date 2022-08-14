@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.lang.golang;
-  graphical = config.this.graphical;
+  cfg = config.my.lang.golang;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.lang.golang.enable = mkOption {
+    my.lang.golang.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

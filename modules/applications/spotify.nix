@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.spotify;
-  graphical = config.this.graphical;
+  cfg = config.my.application.spotify;
+  graphical = config.my.graphical;
 in with lib; {
   options = {
-    this.application.spotify.enable = mkOption {
+    my.application.spotify.enable = mkOption {
       default = graphical.enable;
       type = with types; bool;
     };

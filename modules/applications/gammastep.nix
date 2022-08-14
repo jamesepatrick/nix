@@ -1,10 +1,10 @@
 { options, config, lib, pkgs, ... }:
 let
-  cfg = config.this.application.gammastep;
-  i3 = config.this.application.i3;
+  cfg = config.my.application.gammastep;
+  i3 = config.my.application.i3;
 in with lib; {
   options = {
-    this.application.gammastep.enable = mkOption {
+    my.application.gammastep.enable = mkOption {
       default = i3.enable;
       type = with types; bool;
     };

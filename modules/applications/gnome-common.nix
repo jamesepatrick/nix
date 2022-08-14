@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 let
-  graphical = config.this.graphical;
-  power = config.this.system.power;
-  keyring = config.this.system.keyring;
+  graphical = config.my.graphical;
+  power = config.my.system.power;
+  keyring = config.my.system.keyring;
 in with lib; {
   config = mkIf graphical.enable {
     services.gvfs.enable = true;

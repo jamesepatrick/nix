@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
 
-  options.this.graphical = {
+  options.my.graphical = {
     enable = lib.mkEnableOption "Does this actually need X/Wayland";
   };
 
