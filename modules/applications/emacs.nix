@@ -1,10 +1,11 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, user, ... }:
 # TODO Still need the following dependecies
 #  - Language tools (grammer)
 let
   this = config.my.application.emacs;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options = {
     my.application.emacs.enable = mkOption {
       default = graphical.enable;
@@ -14,7 +15,7 @@ in with lib; {
 
   config = mkIf this.enable {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       programs.emacs = {
         package = pkgs.emacs28NativeComp;
         enable = true;

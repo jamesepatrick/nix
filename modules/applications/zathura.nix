@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.application.zathura;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options = {
     my.application.zathura.enable = mkOption {
       default = graphical.enable;
@@ -11,6 +12,6 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = { programs.zathura = { enable = true; }; };
+    home-manager.users."${user.name}" = { programs.zathura = { enable = true; }; };
   };
 }

@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   config = mkIf graphical.enable {
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       home.packages = with pkgs; [ dracula-theme kora-icon-theme ];
       home.sessionVariables = { GTK_THEME = "Dracula"; };
       systemd.user.sessionVariables = { GTK_THEME = "Dracula"; };

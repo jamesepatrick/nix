@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, user, ... }:
 let
   cfg = config.my.application.firefox;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options.my.application.firefox = {
     enable = mkOption {
       default = graphical.enable;
@@ -18,7 +19,7 @@ in with lib; {
   config = mkIf cfg.enable {
     environment.sessionVariables = { MOZ_USE_XINPUT2 = "1"; };
 
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       programs.firefox = {
         enable = true;
         package = cfg.pkg;

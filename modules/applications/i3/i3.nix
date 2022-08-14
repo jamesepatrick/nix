@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.application.i3;
   graphical = config.my.graphical;
@@ -8,7 +8,8 @@ let
     sha256 = "sha256-dErBslKRBTLKbTTUanIPDwX8CcMJ0Kpi3oof0oXlHys=";
   };
 
-in with lib; {
+in
+with lib; {
   options = {
     my.application.i3.enable = mkOption {
       default = graphical.enable;
@@ -55,7 +56,7 @@ in with lib; {
       };
     };
 
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       xsession.windowManager.i3 = {
         enable = true;
         package = pkgs.i3-gaps;
@@ -170,6 +171,6 @@ in with lib; {
       };
     };
 
-    users.users.james.extraGroups = [ "video" "audio" ];
+    users.users."${user.name}".extraGroups = [ "video" "audio" ];
   };
 }

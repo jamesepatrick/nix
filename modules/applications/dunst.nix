@@ -1,9 +1,10 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, user, ... }:
 let
   this = config.my.application.dunst;
   i3 = config.my.application.i3;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options = {
     my.application.dunst.enable = mkOption {
       default = i3.enable;
@@ -12,7 +13,7 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       systemd.user.startServices = true;
       services.dunst.enable = true;
       home.packages = with pkgs; [ libnotify ];

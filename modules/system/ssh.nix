@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 #with lib.my;
 with lib;
 let
@@ -7,7 +7,8 @@ let
     url = "https://github.com/jamesepatrick.keys";
     sha256 = "sha256-alm6KRFca4VjzTyVEg+j1s0uKaSfvV76o3sgYNAisSA=";
   };
-in {
+in
+{
   options.my = {
     system.ssh.enable = mkOption {
       default = true;
@@ -23,6 +24,6 @@ in {
       passwordAuthentication = false;
     };
 
-    users.users.james.openssh.authorizedKeys.keyFiles = [ publicKey ];
+    users.users."${user.name}".openssh.authorizedKeys.keyFiles = [ publicKey ];
   };
 }

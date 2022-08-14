@@ -1,13 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   graphical = config.my.graphical;
   power = config.my.system.power;
   keyring = config.my.system.keyring;
-in with lib; {
+in
+with lib; {
   config = mkIf graphical.enable {
     services.gvfs.enable = true;
 
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       home.packages = with pkgs.gnome;
         [
           cheese

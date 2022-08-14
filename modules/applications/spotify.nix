@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.application.spotify;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options = {
     my.application.spotify.enable = mkOption {
       default = graphical.enable;
@@ -11,7 +12,7 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = { home.packages = with pkgs; [ spotify ]; };
+    home-manager.users."${user.name}" = { home.packages = with pkgs; [ spotify ]; };
 
     # Local discovery - https://nixos.wiki/wiki/Spotify
     networking.firewall.allowedTCPPorts = [ 57621 ];

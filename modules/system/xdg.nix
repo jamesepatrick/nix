@@ -1,5 +1,5 @@
-{ config, pkgs, ... }: {
-  home-manager.users.james = {
+{ config, pkgs, user, ... }: {
+  home-manager.users."${user.name}" = {
     home.packages = with pkgs; [ xdg-utils xdg-launch ];
     xdg.enable = true;
   };

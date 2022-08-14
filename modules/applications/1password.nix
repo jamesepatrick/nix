@@ -1,9 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.application.onepassword;
   graphical = config.my.graphical;
   enable = (this.gui.enable || this.cli.enable);
-in with lib; {
+in
+with lib; {
   options = {
     my.application.onepassword.gui.enable = mkOption {
       default = graphical.enable;
@@ -17,10 +18,10 @@ in with lib; {
 
   config = mkIf enable (mkMerge [
     (mkIf this.cli.enable {
-      home-manager.users.james.home.packages = with pkgs; [ _1password ];
+      home-manager.users."${user.name}".home.packages = with pkgs; [ _1password ];
     })
     (mkIf this.gui.enable {
-      home-manager.users.james = {
+      home-manager.users."${user.name}" = {
         home.packages = with pkgs; [ _1password-gui ];
       };
       systemd.user.services._1password = {

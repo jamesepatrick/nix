@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.system.yubikey;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options.my.system.yubikey.enable = mkEnableOption "Yubikey";
 
   config = mkIf this.enable {
@@ -35,7 +36,7 @@ in with lib; {
       [ yubioath-desktop pinentry-curses ]
       ++ optionals (graphical.enable) [ pinentry-gnome ];
 
-    home-manager.users.james.home = {
+    home-manager.users."${user.name}".home = {
       packages = with pkgs;
         [ yubikey-manager yubikey-personalization ]
         ++ optionals (graphical.enable) [
@@ -43,10 +44,11 @@ in with lib; {
           yubikey-personalization-gui
         ];
       file.".gnupg/gpg-agent.config" = {
-        text = if graphical.enable then
-          "pinentry-program ${pkgs.pinentry-gnome}/bin/pinentry"
-        else
-          "pinentry-program ${pkgs.pinentry-curses}/bin/pinentry";
+        text =
+          if graphical.enable then
+            "pinentry-program ${pkgs.pinentry-gnome}/bin/pinentry"
+          else
+            "pinentry-program ${pkgs.pinentry-curses}/bin/pinentry";
       };
     };
   };

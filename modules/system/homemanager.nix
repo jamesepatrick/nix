@@ -1,24 +1,16 @@
-{ config, home-manager, lib, pkgs, ... }: {
+{ config, home-manager, lib, pkgs, user, ... }: {
   imports = [ home-manager.nixosModules.home-manager ];
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.james = {
-    # Home Manager needs a bit of information about you and the
-    # paths it should manage.
-    home.username = "james";
-    home.homeDirectory = "/home/james";
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users."${user.name}" = {
+      # You can update Home Manager without changing this value. See
+      # the Home Manager release notes for a list of state version
+      # changes in each release.
+      home.stateVersion = "21.11";
 
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    home.stateVersion = "21.11";
-
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
+      # Let Home Manager install and manage itself.
+      programs.home-manager.enable = true;
+    };
   };
 }

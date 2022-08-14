@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.application.i3.polybar;
   i3 = config.my.application.i3;
@@ -11,7 +11,8 @@ let
     primary = "#F0C674";
     secondary = "#8ABEB7";
   };
-in with lib; {
+in
+with lib; {
   options = {
     my.application.i3.polybar.enable = mkOption {
       default = i3.enable;
@@ -20,7 +21,7 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       services.polybar = {
         enable = true;
         script = "polybar";

@@ -1,8 +1,9 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, user, ... }:
 let
   this = config.my.application.gammastep;
   i3 = config.my.application.i3;
-in with lib; {
+in
+with lib; {
   options = {
     my.application.gammastep.enable = mkOption {
       default = i3.enable;
@@ -11,7 +12,7 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       services.gammastep = {
         enable = true;
         provider = "geoclue2";

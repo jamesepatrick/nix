@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   this = config.my.lang.golang;
   graphical = config.my.graphical;
-in with lib; {
+in
+with lib; {
   options = {
     my.lang.golang.enable = mkOption {
       default = graphical.enable;
@@ -11,7 +12,7 @@ in with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users.james = {
+    home-manager.users."${user.name}" = {
       programs.go = {
         enable = true;
         goPath = ".local/go";

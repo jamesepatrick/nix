@@ -58,7 +58,10 @@
       channelsConfig = { allowUnfree = true; };
       sharedOverlays = [ nur.overlay (import ./pkgs) emacs-overlay.overlay ];
       hostDefaults = {
-        specialArgs = { inherit home-manager nixos-hardware; };
+        specialArgs = {
+          inherit home-manager nixos-hardware;
+          user = { name = "james"; description = "James Patrick"; };
+        };
         modules = mapModulesRec' ./modules import;
         system = "x86_64-linux";
       };
