@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }: {
+  programs.mtr.enable = true;
   networking = {
     firewall = {
       enable = true;
