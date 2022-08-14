@@ -63,14 +63,9 @@
       sharedOverlays = [ nur.overlay emacs-overlay.overlay ];
       hostDefaults = {
         modules = mapModulesRec' ./modules import ++ [
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.james = import ./home.nix;
-          }
           { nixpkgs.overlays = [ nur.overlay (import ./pkgs) ]; }
         ];
+        specialArgs = { inherit home-manager nixos-hardware; };
         system = "x86_64-linux";
       };
     };
