@@ -5,7 +5,7 @@ let
   this = config.my.system.ssh;
   publicKey = pkgs.fetchurl {
     url = "https://github.com/jamesepatrick.keys";
-    sha256 = "sha256-alm6KRFca4VjzTyVEg+j1s0uKaSfvV76o3sgYNAisSA=";
+    sha256 = "sha256-vEf+IIo/6qUXQgKXbzdsCzfRiteFMXoRXkpkB6TtIks=";
   };
 in
 {
