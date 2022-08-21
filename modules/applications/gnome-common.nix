@@ -45,6 +45,7 @@ with lib; {
           nautilus
           nautilus-python
           sushi
+          pkgs.polkit_gnome
         ]
         ++ optionals (gnomeExtras.enable) gnomeExtras.pkgs
         ++ optionals (power.enable) [ gnome-power-manager ]

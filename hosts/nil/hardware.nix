@@ -30,7 +30,6 @@
     [ nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2 ];
   my.system = {
     zfs.enable = true;
-    yubikey.enable = true;
   };
 
   networking = {
