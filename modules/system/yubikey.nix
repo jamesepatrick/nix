@@ -6,50 +6,48 @@ in
 with lib; {
   options.my.system.yubikey.enable = mkEnableOption "Yubikey";
 
-  config = mkIf this.enable {
-    services.udev.packages = with pkgs; [ yubikey-personalization ];
+  config = mkIf this.enable (mkMerge [
+    {
+      services.udev.packages = with pkgs; [ yubikey-personalization ];
+      hardware.gpgSmartcards.enable = true;
 
-    environment.shellInit = ''
-      export GPG_TTY="$(tty)"
-      gpg-connect-agent /bye
-      export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-    '';
+      security.pam = {
+        yubico = {
+          enable = true;
+          mode = "challenge-response";
+          # debug = true;
+        };
+      };
 
-    programs = {
-      ssh.startAgent = false;
-      gnupg.agent = {
+      environment.systemPackages = with pkgs; [ pinentry-curses yubico-pam ];
+      home-manager.users."${user.name}".home.packages = with pkgs;
+        [ yubikey-manager yubikey-personalization ];
+    }
+    (mkIf graphical.enable {
+
+      environment.systemPackages = with pkgs;
+        [ pinentry-gnome yubioath-desktop ];
+
+      home-manager.users."${user.name}".home = {
+        packages = with pkgs;
+          [
+            yubikey-touch-detector
+            yubikey-manager-qt
+            yubikey-personalization-gui
+          ];
+      };
+
+      systemd.user.services.touchthebutton = {
         enable = true;
-        enableSSHSupport = true;
-        pinentryFlavor = if graphical.enable then "gnome3" else "curses";
+        description = "YubiKey touch prompt";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector -v -libnotify";
+          RestartSec = 5;
+          Restart = "always";
+        };
       };
-    };
-
-    # security.pam = {
-    #   yubico = {
-    #     enable = true;
-    #     mode = "challenge-response";
-    #     control = "required"; # oh boy.
-    #   };
-    # };
-
-    environment.systemPackages = with pkgs;
-      [ yubioath-desktop pinentry-curses ]
-      ++ optionals (graphical.enable) [ pinentry-gnome ];
-
-    home-manager.users."${user.name}".home = {
-      packages = with pkgs;
-        [ yubikey-manager yubikey-personalization ]
-        ++ optionals (graphical.enable) [
-          yubikey-manager-qt
-          yubikey-personalization-gui
-        ];
-      file.".gnupg/gpg-agent.config" = {
-        text =
-          if graphical.enable then
-            "pinentry-program ${pkgs.pinentry-gnome}/bin/pinentry"
-          else
-            "pinentry-program ${pkgs.pinentry-curses}/bin/pinentry";
-      };
-    };
-  };
+    })
+  ]);
 }
