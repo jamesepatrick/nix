@@ -1,40 +1,53 @@
 { config, lib, pkgs, user, ... }:
 let
-  gnomeExtras = config.my.application.gnome.extras;
+  this = config.my.application.gnome;
   graphical = config.my.graphical;
-  keyring = config.my.system.keyring;
   power = config.my.system.power;
 in
 with lib; {
   options = {
-    my.application.gnome.extras = {
-      enable = mkOption {
-        default = graphical.enable;
-        type = with types; bool;
+    my.application.gnome = {
+      extras = {
+        enable = mkOption {
+          default = graphical.enable;
+          type = with types; bool;
+        };
+        pkgs = mkOption {
+          default = with pkgs.gnome; [
+            cheese
+            file-roller
+            gnome-books
+            gnome-boxes
+            gnome-music
+            iagno
+            pomodoro
+          ];
+          type = with types; listOf package;
+        };
       };
-
-      pkgs = mkOption {
-        default = with pkgs.gnome; [
-          cheese
-          file-roller
-          gnome-books
-          gnome-boxes
-          gnome-music
-          iagno
-          pomodoro
-        ];
-        type = with types; listOf package;
+      keyring.enable = mkOption {
+        default = true;
+        type = with types; bool;
       };
     };
   };
   config = mkIf graphical.enable
     {
-      services.gvfs.enable = true;
+      programs.dconf.enable = true;
+      services = {
+        gvfs.enable = true;
+        gnome = {
+          evolution-data-server.enable = true;
+          gnome-online-accounts.enable = true;
+          gnome-keyring.enable = this.keyring.enable;
+        };
+      };
 
       home-manager.users."${user.name}" = {
         home.packages = with pkgs.gnome;
           [
             gnome-bluetooth
+            gnome-online-accounts
             pkgs.mate.mate-polkit
             gnome-calendar
             gnome-characters
@@ -49,9 +62,9 @@ with lib; {
             nautilus-python
             sushi
           ]
-          ++ optionals (gnomeExtras.enable) gnomeExtras.pkgs
+          ++ optionals (this.extras.enable) this.extras.pkgs
           ++ optionals (power.enable) [ gnome-power-manager ]
-          ++ optionals (keyring.enable) [ gnome-keyring libgnome-keyring seahorse ];
+          ++ optionals (this.keyring.enable) [ gnome-keyring libgnome-keyring seahorse ];
       };
 
       systemd.user.services.mate_polkit = {
