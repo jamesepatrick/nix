@@ -12,23 +12,22 @@ with lib; {
   };
 
   config = mkIf this.enable {
-    # home-manager.users."${user.name}" = {
-    #   services.kdeconnect = {
-    #     indicator = true;
-    #     enable = true;
-    #   };
-    # };
-
-    # networking.firewall = {
-    #   allowedTCPPortRanges = [{
-    #     from = 1714;
-    #     to = 1764;
-    #   }];
-    #   allowedUDPPortRanges = [{
-    #     from = 1714;
-    #     to = 1764;
-    #   }];
-    # };
     programs.kdeconnect.enable = true;
+
+    systemd.user.services = {
+      kdeconnect = {
+        enable = true;
+        description = "KDE Connect";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+    };
   };
 }
