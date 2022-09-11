@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let extras = config.my.system.cli.extras;
-in with lib; {
+in
+with lib; {
   options = {
     my.system.cli.extras = {
       enable = mkOption {
@@ -8,7 +9,13 @@ in with lib; {
         type = with types; bool;
       };
       pkgs = mkOption {
-        default = with pkgs; [ htop silver-searcher jq ripgrep tmux ];
+        default = with pkgs; [
+          htop
+          jq
+          ripgrep
+          silver-searcher
+          tmux
+        ];
         type = with types; listOf package;
       };
     };
