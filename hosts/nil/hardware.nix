@@ -71,9 +71,8 @@
       };
     };
     kernelModules = [ "kvm-amd" ];
-    # Need for https://github.com/NixOS/nixpkgs/issues/177844
-    kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.16")
-      pkgs.linuxPackages_latest;
+    # zfs for Linux Kernel 5.19.xx(linuxPackages_latest) is currently broken.
+    kernelPackages = pkgs.linuxPackages_5_18;
     supportedFilesystems = [ "zfs" ];
   };
 
