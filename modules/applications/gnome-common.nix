@@ -43,16 +43,24 @@ with lib; {
         };
       };
 
+      environment.systemPackages = with pkgs; [
+        pkgs.gnome-online-accounts
+        pkgs.gsettings-desktop-schemas
+        pkgs.glib
+      ];
+
       home-manager.users."${user.name}" = {
         home.packages = with pkgs.gnome;
           [
             gnome-bluetooth
-            gnome-online-accounts
+            pkgs.gnome-menus
             pkgs.mate.mate-polkit
             gnome-calendar
+            gnome-session
             gnome-characters
             gnome-color-manager
             gnome-common
+            gnome-control-center
             gnome-contacts
             gnome-dictionary
             gnome-disk-utility
