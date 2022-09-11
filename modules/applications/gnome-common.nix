@@ -16,6 +16,7 @@ with lib; {
           default = with pkgs.gnome; [
             cheese
             file-roller
+            gnome-books
             gnome-boxes
             gnome-music
             iagno

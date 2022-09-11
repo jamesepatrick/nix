@@ -23,12 +23,14 @@ with lib; {
       environment.systemPackages = with pkgs; [ _1password ];
       programs._1password = {
         enable = true;
+        gid = 5001;
       };
       users.users."${user.name}".extraGroups = [ "onepassword-cli" ];
     })
     (mkIf this.gui.enable {
       programs._1password-gui = {
         enable = true;
+        gid = 5000;
         polkitPolicyOwners = [ "${user.name}" ];
       };
       users.users."${user.name}".extraGroups = [ "onepassword" ];
