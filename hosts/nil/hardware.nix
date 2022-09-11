@@ -31,6 +31,7 @@
   my.system = {
     zfs.enable = true;
     yubikey.enable = true;
+    fprint.enable = true;
   };
 
   networking = {

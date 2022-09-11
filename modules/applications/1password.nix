@@ -2,6 +2,7 @@
 let
   this = config.my.application.onepassword;
   yubikey = config.my.system.yubikey;
+  fprint = config.my.system.fprint;
   graphical = config.my.graphical;
   enable = (this.gui.enable || this.cli.enable);
 in
@@ -35,6 +36,7 @@ with lib; {
       users.users."${user.name}".extraGroups = [ "onepassword" ];
 
       security.pam.services."1password".yubicoAuth = yubikey.enable;
+      security.pam.services."1password".fprintAuth = fprint.enable;
 
       systemd.user.services._1password = {
         enable = true;
