@@ -1,12 +1,21 @@
 { config, lib, pkgs, user, ... }:
-let graphical = config.my.graphical;
+let
+  graphical = config.my.graphical;
+  this = config.my.system.gtk;
 in
 with lib; {
+  options.my.system.gtk = {
+    theme = mkOption {
+      default = "Dracula";
+      type = with types; str;
+    };
+  };
   config = mkIf graphical.enable {
     home-manager.users."${user.name}" = {
+      gtk.enable = true;
       home.packages = with pkgs; [ dracula-theme kora-icon-theme ];
-      home.sessionVariables = { GTK_THEME = "Dracula"; };
-      systemd.user.sessionVariables = { GTK_THEME = "Dracula"; };
+      home.sessionVariables = { GTK_THEME = "${this.theme}"; };
+      systemd.user.sessionVariables = { GTK_THEME = "${this.theme}"; };
 
       xdg.configFile."gtk-3.0/settings.ini".text = ''
         [Settings]
