@@ -2,6 +2,7 @@
 let
   this = config.my.application.gnome;
   graphical = config.my.graphical;
+  music = config.my.music;
   power = config.my.system.power;
 in
 with lib; {
@@ -72,6 +73,7 @@ with lib; {
           ]
           ++ optionals (this.extras.enable) this.extras.pkgs
           ++ optionals (power.enable) [ gnome-power-manager ]
+          ++ optionals (music.enable) [ gnome-music ]
           ++ optionals (this.keyring.enable) [ gnome-keyring libgnome-keyring seahorse ];
       };
 
