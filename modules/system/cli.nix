@@ -12,6 +12,8 @@ with lib; {
         default = with pkgs; [
           htop
           jq
+          pgcli
+          postgresql
           ripgrep
           silver-searcher
           tmux
