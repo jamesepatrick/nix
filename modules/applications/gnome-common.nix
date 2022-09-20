@@ -2,7 +2,7 @@
 let
   this = config.my.application.gnome;
   graphical = config.my.graphical;
-  music = config.my.music;
+  music = config.my.application.music;
   mail = config.my.application.mail;
   power = config.my.system.power;
 in
@@ -75,7 +75,7 @@ with lib; {
           ++ optionals (this.extras.enable) this.extras.pkgs
           ++ optionals (power.enable) [ gnome-power-manager ]
           ++ optionals (mail.enable) [ geary ]
-          ++ optionals (music.enable) [ gnome-music ]
+          ++ optionals (music.enable) [ gnome-music pkgs.tracker ]
           ++ optionals (this.keyring.enable) [ gnome-keyring libgnome-keyring seahorse ];
       };
 
