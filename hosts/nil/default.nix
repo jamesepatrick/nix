@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware.nix
+    ./configuration.nix
     ../../profiles/laptop.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
