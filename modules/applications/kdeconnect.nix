@@ -22,7 +22,7 @@ with lib; {
         partOf = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
+          ExecStart = "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;

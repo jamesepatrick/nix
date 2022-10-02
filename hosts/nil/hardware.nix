@@ -72,8 +72,12 @@
     };
     kernelModules = [ "kvm-amd" ];
     # Need for https://github.com/NixOS/nixpkgs/issues/177844
-    kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.16")
-      pkgs.linuxPackages_latest;
+    # Currently zfs-kernel is broken for latest & LTS is broken due to kernel
+    # issues with the rtw89 firmware. The current work around is to ignore the
+    # broken argument.
+    kernelPackages = pkgs.linuxPackages_latest.extend (final: prev: {
+      zfs = prev.zfs.overrideAttrs (_: { meta.broken = false; });
+    });
     supportedFilesystems = [ "zfs" ];
   };
 
