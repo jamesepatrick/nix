@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let this = config.my.system.boot;
-in with lib; {
+in
+with lib; {
   options.my.system.boot.enable = mkOption {
     default = true;
     type = with types; bool;
@@ -15,6 +16,13 @@ in with lib; {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
+
+      # Enable plymouth
+      plymouth = {
+        enable = true;
+        theme = "breeze";
+      };
+      initrd.systemd.enable = true;
     };
   };
 }
