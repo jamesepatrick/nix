@@ -25,7 +25,7 @@ with lib; {
         partOf = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.Schubsigo}/bin/Schubsigo -no-tray";
+          ExecStart = "${pkgs.schubsigo}/bin/SchubsiGo -no-tray";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
