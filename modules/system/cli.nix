@@ -10,6 +10,7 @@ with lib; {
       };
       pkgs = mkOption {
         default = with pkgs; [
+          file
           htop
           jq
           pgcli
