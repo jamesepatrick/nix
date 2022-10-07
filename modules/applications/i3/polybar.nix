@@ -24,7 +24,7 @@ with lib; {
     home-manager.users."${user.name}" = {
       services.polybar = {
         enable = true;
-        script = "polybar";
+        script = "polybar &";
         package = pkgs.polybar.override {
           i3GapsSupport = true;
           alsaSupport = true;
