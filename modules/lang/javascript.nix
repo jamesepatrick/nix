@@ -12,7 +12,13 @@ with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${user.name}" = { lib, ... }: {
+      # See https://nixos.wiki/wiki/Node.js
+      home.activation.npm-global = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD mkdir $HOME/.npm-global
+        $DRY_RUN_CMD npm set prefix $HOME/.npm-global
+      '';
+
       home.packages = with pkgs; [
         nodePackages.npm
         nodePackages.vue-cli
