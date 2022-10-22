@@ -26,15 +26,15 @@ with lib; {
           padding = 20
           horizontal_padding = 20
 
-          width = 300
+          width = 350
           height = 100
-          offset = 40x60
+          offset = 20x20
           origin = top-right
 
           frame_width = 0
           separator_height = 0
-          frame_color = "#151515"
-          separator_color = "#151515"
+          frame_color = "#161720ee"
+          separator_color = "#12151a"
 
           sort = no
           font = Overpass 10.5
@@ -61,17 +61,17 @@ with lib; {
           mouse_right_click = close_all
 
         [urgency_low]
-          background = "#1a1826"
+          background = "#161720ee"
           foreground = "#f5c2e7"
           timeout = 5
 
         [urgency_normal]
-          background = "#1a1826"
+          background = "161720ee"
           foreground = "#f5c2e7"
           timeout = 10
 
         [urgency_critical]
-          background = "#1a1826"
+          background = "161720ee"
           foreground = "#f5c2e7"
           timeout = 20
       '';
