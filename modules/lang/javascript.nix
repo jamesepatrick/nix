@@ -15,7 +15,7 @@ with lib; {
     home-manager.users."${user.name}" = { lib, ... }: {
       # See https://nixos.wiki/wiki/Node.js
       home.activation.npm-global = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        $DRY_RUN_CMD mkdir $HOME/.npm-global
+        $DRY_RUN_CMD mkdir -p $HOME/.npm-global
         $DRY_RUN_CMD npm set prefix $HOME/.npm-global
       '';
 
