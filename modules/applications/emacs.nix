@@ -26,8 +26,11 @@ with lib; {
         (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
         editorconfig-core-c
         fd
+        gdb
         graphviz
         html-tidy
+        lldb
+        python38
         ripgrep
         sqlite
         wordnet
