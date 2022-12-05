@@ -13,7 +13,6 @@ with lib; {
 
   config = mkIf this.enable {
     home-manager.users."${user.name}".home.packages = with pkgs; [
-      elementary-planner
       todoist
       todoist-electron
     ];

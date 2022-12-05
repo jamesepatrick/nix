@@ -26,7 +26,7 @@ with lib; {
     (mkIf graphical.enable {
 
       environment.systemPackages = with pkgs;
-        [ pinentry-gnome yubioath-desktop ];
+        [ pinentry-gnome ];
 
       home-manager.users."${user.name}".home = {
         packages = with pkgs;
