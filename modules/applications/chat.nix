@@ -16,6 +16,7 @@ with lib; {
       [
         discord
         element-desktop
+        whatsapp-for-linux
       ];
   };
 }
