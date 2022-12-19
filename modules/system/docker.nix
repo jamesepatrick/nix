@@ -1,7 +1,6 @@
 { config, lib, pkgs, user, ... }:
 let
   this = config.system.docker;
-  graphical = config.my.graphical;
 in
 with lib; {
   options = {
