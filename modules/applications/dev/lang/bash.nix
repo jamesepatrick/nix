@@ -15,6 +15,7 @@ with lib; {
     home-manager.users."${user.name}" = {
       home.packages = with pkgs; [
         nodePackages.bash-language-server
+        shfmt
         shellcheck
       ];
     };

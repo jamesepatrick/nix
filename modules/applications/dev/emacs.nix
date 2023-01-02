@@ -24,12 +24,14 @@ with lib; {
 
       home.packages = with pkgs; [
         (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+        cmake
         editorconfig-core-c
         fd
         gdb
         graphviz
         html-tidy
         lldb
+        pandoc
         python38
         ripgrep
         sqlite

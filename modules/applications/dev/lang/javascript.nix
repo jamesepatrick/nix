@@ -20,7 +20,9 @@ with lib; {
       '';
 
       home.packages = with pkgs; [
+        nodePackages.js-beautify
         nodePackages.npm
+        nodePackages.stylelint
         nodePackages.vue-cli
         nodejs
         yarn
