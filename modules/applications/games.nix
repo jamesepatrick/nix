@@ -13,15 +13,24 @@ with lib; {
 
   config = mkIf this.enable {
     programs.steam.enable = true;
-    environment.systemPackages = with pkgs;
-      [
-        bottles
-        dosbox
-        minigalaxy
-        shattered-pixel-dungeon
-        wine64
-        wineWowPackages.full
-        winetricks
-      ];
+    environment = {
+      systemPackages = with pkgs;
+        [
+          bottles
+          dosbox
+          minigalaxy
+          protontricks
+          protonup-ng
+          shattered-pixel-dungeon
+          wine64
+          wineWowPackages.full
+          winetricks
+        ];
+      # Steam needs this to find Proton-GE
+      # https://nixos.wiki/wiki/Steam
+      sessionVariables = {
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+      };
+    };
   };
 }
