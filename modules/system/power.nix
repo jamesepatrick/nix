@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let this = config.my.system.power;
-in with lib; {
+in
+with lib; {
   options.my.system.power.enable = mkEnableOption "Power Management";
 
   config = mkIf this.enable {
@@ -13,6 +14,10 @@ in with lib; {
     powerManagement.powertop.enable = true;
     services.upower.enable = true;
 
-    environment.systemPackages = with pkgs; [ powertop tpacpi-bat ];
+    environment.systemPackages = with pkgs; [
+      poweralertd
+      powertop
+      tpacpi-bat
+    ];
   };
 }

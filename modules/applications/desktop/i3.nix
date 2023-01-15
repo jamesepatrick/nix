@@ -2,6 +2,7 @@
 let
   this = config.my.application.i3;
   graphical = config.my.graphical;
+  power = config.my.system.power;
   modifier = "Mod4";
   wallpaper = pkgs.fetchurl {
     url = "https://i.imgur.com/6B4Hgw0.jpeg";
@@ -113,7 +114,6 @@ with lib; {
             "${modifier}+shift+k" = "move up";
             "${modifier}+shift+j" = "move down";
             "${modifier}+shift+l" = "move right";
-
             "${modifier}+s" = "split h";
             "${modifier}+q" = "kill";
             "${modifier}+alt+s" = "layout stacking";
@@ -132,11 +132,13 @@ with lib; {
               "exec ${pkgs.brightness-sh}/bin/brightness.sh up";
           };
           modifier = "Mod4";
-          startup = [
-            { command = "${pkgs.autotiling}/bin/autotiling"; }
-            { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
-            { command = "systemctl --user restart polybar.service"; }
-          ];
+          startup =
+            optionals (power.enable) [{ command = "${pkgs.poweralertd}/bin/poweralertd"; }]
+            ++ [
+              { command = "${pkgs.autotiling}/bin/autotiling"; }
+              { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
+              { command = "systemctl --user restart polybar.service"; }
+            ];
         };
       };
     };
