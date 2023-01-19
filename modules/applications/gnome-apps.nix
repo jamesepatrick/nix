@@ -76,6 +76,13 @@ with lib; {
           ++ optionals (mail.enable) [ geary ]
           ++ optionals (music.enable) [ gnome-music pkgs.tracker ]
           ++ optionals (this.keyring.enable) [ gnome-keyring libgnome-keyring seahorse ];
+
+        xdg.mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+          };
+        };
       };
 
       systemd.user.services.mate_polkit = {
