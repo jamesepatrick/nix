@@ -2,8 +2,7 @@
 let
   this = config.my.lang.bash;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.lang.javascript.enable = mkOption {
       default = graphical.enable;
@@ -16,7 +15,7 @@ with lib; {
       # See https://nixos.wiki/wiki/Node.js
       home.activation.npm-global = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         $DRY_RUN_CMD mkdir -p $HOME/.npm-global
-        $DRY_RUN_CMD npm set prefix $HOME/.npm-global
+        $DRY_RUN_CMD ${pkgs.nodePackages.npm}/bin/npm set prefix $HOME/.npm-global
       '';
 
       home.packages = with pkgs; [
