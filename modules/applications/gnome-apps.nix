@@ -43,30 +43,31 @@ in with lib; {
     };
 
     environment.systemPackages = with pkgs; [
+      pkgs.glib
       pkgs.gnome-online-accounts
       pkgs.gsettings-desktop-schemas
-      pkgs.glib
     ];
 
     home-manager.users."${user.name}" = {
       home.packages = with pkgs.gnome;
         [
           gnome-bluetooth
-          pkgs.gnome-menus
-          pkgs.mate.mate-polkit
           gnome-calendar
-          gnome-session
           gnome-characters
           gnome-color-manager
           gnome-common
-          gnome-control-center
           gnome-contacts
+          gnome-control-center
           gnome-dictionary
           gnome-disk-utility
           gnome-font-viewer
           gnome-maps
+          gnome-screenshot
+          gnome-session
           nautilus
           nautilus-python
+          pkgs.gnome-menus
+          pkgs.mate.mate-polkit
           sushi
         ] ++ optionals (this.extras.enable) this.extras.pkgs
         ++ optionals (power.enable) [ gnome-power-manager ]
