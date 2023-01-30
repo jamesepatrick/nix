@@ -31,7 +31,7 @@ with lib; {
     };
 
     environment.systemPackages = with pkgs;
-      [ gnumake git vim killall unzip zsh ]
+      [ gnumake git git-lfs vim killall unzip zsh ]
       ++ optionals (extras.enable) extras.pkgs;
   };
 }
