@@ -5,6 +5,7 @@ in {
     fonts = {
       enableDefaultFonts = true;
       fonts = with pkgs; [
+        etBook
         alegreya
         fira-code
         fira-code-symbols
