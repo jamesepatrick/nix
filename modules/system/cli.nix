@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let extras = config.my.system.cli.extras;
-in
-with lib; {
+in with lib; {
   options = {
     my.system.cli.extras = {
       enable = mkOption {
