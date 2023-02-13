@@ -4,8 +4,7 @@
 let
   this = config.my.application.emacs;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.application.emacs.enable = mkOption {
       default = graphical.enable;
@@ -15,6 +14,9 @@ with lib; {
 
   config = mkIf this.enable {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+
+    environment.systemPackages = with pkgs; [ nodePackages.mermaid-cli ];
+
     home-manager.users."${user.name}" = {
       programs.emacs = {
         package = pkgs.emacs28NativeComp;
