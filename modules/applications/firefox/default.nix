@@ -60,6 +60,13 @@ with lib; {
               "ui.systemUsesDarkTheme" = true; # Dark mode
             };
           };
+          # Stripped down configuration running vanilla firefox.
+          secondary = {
+            name = "secondary";
+            id = 1;
+            #extensions = with pkgs.nur.repos.rycee.firefox-addons;
+            #[ ublock-origin ];
+          };
         };
       };
     };
