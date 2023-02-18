@@ -9,8 +9,7 @@ let
     sha256 = "sha256-dErBslKRBTLKbTTUanIPDwX8CcMJ0Kpi3oof0oXlHys=";
   };
 
-in
-with lib; {
+in with lib; {
   options = {
     my.application.i3.enable = mkOption {
       default = graphical.enable;
@@ -125,20 +124,24 @@ with lib; {
             Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             XF86AudioLowerVolume = "exec ${pkgs.volume-sh}/bin/volume.sh down";
             XF86AudioMute = "exec ${pkgs.volume-sh}/bin/volume.sh mute";
+            XF86AudioNext = "exec ${pkgs.playerctl}/bin/playerctl next";
+            XF86AudioPause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+            XF86AudioPrev = "exec ${pkgs.playerctl}/bin/playerctl previous";
             XF86AudioRaiseVolume = "exec ${pkgs.volume-sh}/bin/volume.sh up";
+            XF86Display = "exec ${pkgs.autorandr}/bin/autorandr --change";
             XF86MonBrightnessDown =
               "exec ${pkgs.brightness-sh}/bin/brightness.sh down";
             XF86MonBrightnessUp =
               "exec ${pkgs.brightness-sh}/bin/brightness.sh up";
           };
           modifier = "Mod4";
-          startup =
-            optionals (power.enable) [{ command = "${pkgs.poweralertd}/bin/poweralertd"; }]
-            ++ [
-              { command = "${pkgs.autotiling}/bin/autotiling"; }
-              { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
-              { command = "systemctl --user restart polybar.service"; }
-            ];
+          startup = optionals (power.enable) [{
+            command = "${pkgs.poweralertd}/bin/poweralertd";
+          }] ++ [
+            { command = "${pkgs.autotiling}/bin/autotiling"; }
+            { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
+            { command = "systemctl --user restart polybar.service"; }
+          ];
         };
       };
     };
