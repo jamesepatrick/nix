@@ -77,7 +77,7 @@ in with lib; {
           gnome-keyring
           libgnome-keyring
           seahorse
-        ];
+        ] ++ [ pkgs.evolution-data-server-gtk4 pkgs.evolution ];
 
       xdg.mimeApps = {
         enable = true;
