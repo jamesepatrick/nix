@@ -26,8 +26,7 @@
 #           ├─rpool/root/nixos  zfs      /
 #           └─rpool/home        zfs      /home
 { self, config, nixos-hardware, lib, pkgs, modulesPath, ... }: {
-  imports =
-    [ nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2 ];
+  imports = [ nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2 ];
   my.system = {
     zfs.enable = true;
     yubikey.enable = true;
@@ -50,7 +49,8 @@
     };
   };
 
-  hardware.firmware = [ pkgs.rtw89-firmware ];
+  # error: rtw89-firmware has been removed because linux-firmware now contains it
+  #hardware.firmware = [ pkgs.rtw89-firmware ];
 
   boot = {
     initrd = {

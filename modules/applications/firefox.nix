@@ -2,8 +2,12 @@
 let
   cfg = config.my.application.firefox;
   graphical = config.my.graphical;
-in
-with lib; {
+  tridactylConfig = pkgs.fetchurl {
+    url =
+      "https://git.jpatrick.io/james/dotfiles/raw/branch/master/tridactyl/tridactylrc";
+    sha256 = "sha256-iOBd/yEvQP/Gn3+lS2Ztu9oslllZU4G7VnM4pTck+Tg=";
+  };
+in with lib; {
   options.my.application.firefox = {
     enable = mkOption {
       default = graphical.enable;
@@ -23,18 +27,17 @@ with lib; {
       programs.firefox = {
         enable = true;
         package = cfg.pkg;
-
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          https-everywhere
-          onepassword-password-manager
-          simple-tab-groups
-          ublock-origin
-        ];
-
         profiles = {
           default = {
             name = "primary";
             id = 0;
+            extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+              #https-everywhere # Current disabled has its been removed from Rycee's Firefox Addons.
+              onepassword-password-manager
+              simple-tab-groups
+              tridactyl
+              ublock-origin
+            ];
             settings = {
               # Don't ask for download location
               "browser.download.useDownloadDir" = false;
@@ -64,11 +67,20 @@ with lib; {
           secondary = {
             name = "secondary";
             id = 1;
+            extensions = with pkgs.nur.repos.rycee.firefox-addons;
+              [
+                #https-everywhere # Current disabled has its been removed from Rycee's Firefox Addons.
+                ublock-origin
+              ];
             #extensions = with pkgs.nur.repos.rycee.firefox-addons;
             #[ ublock-origin ];
           };
         };
       };
+
+      home.packages = with pkgs; [ tridactyl-native ];
+
+      xdg.configFile."tridactyl/tridactylrc".source = tridactylConfig;
     };
   };
 }

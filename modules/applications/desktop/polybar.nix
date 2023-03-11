@@ -11,8 +11,7 @@ let
     primary = "#F0C674";
     secondary = "#8ABEB7";
   };
-in
-with lib; {
+in with lib; {
   options = {
     my.application.i3.polybar.enable = mkOption {
       default = i3.enable;
@@ -26,7 +25,6 @@ with lib; {
         enable = true;
         script = "polybar &";
         package = pkgs.polybar.override {
-          i3GapsSupport = true;
           alsaSupport = true;
           iwSupport = true;
           githubSupport = true;
