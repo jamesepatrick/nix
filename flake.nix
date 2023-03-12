@@ -8,33 +8,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR";
-    };
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
+    nur = { url = "github:nix-community/NUR"; };
+    nixos-hardware = { url = "github:NixOS/nixos-hardware/master"; };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    inputs@{ self
-    , emacs-overlay
-    , home-manager
-    , nixos-hardware
-    , nixpkgs
-    , nur
-    , utils
-    , ...
-    }:
+  outputs = inputs@{ self, emacs-overlay, home-manager, nixos-hardware, nixpkgs
+    , nur, utils, ... }:
     let
       inherit (utils.lib) mkFlake;
       inherit (self.lib.my) mapModules mapModulesRec';
-    in
-    mkFlake {
+    in mkFlake {
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
           inherit inputs;
@@ -45,9 +32,7 @@
 
       inherit self inputs;
       supportedSystems = [ "x86_64-linux" ];
-      hosts = {
-        nil.modules = [ ./hosts/nil ];
-      };
+      hosts = { nil.modules = [ ./hosts/nil ]; };
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -58,7 +43,10 @@
       hostDefaults = {
         specialArgs = {
           inherit home-manager nixos-hardware;
-          user = { name = "james"; description = "James Patrick"; };
+          user = {
+            name = "james";
+            description = "James Patrick";
+          };
         };
         modules = mapModulesRec' ./modules import;
         system = "x86_64-linux";
