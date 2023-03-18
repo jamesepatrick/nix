@@ -12,6 +12,7 @@ in with lib; {
           file
           htop
           jq
+          ncdu
           pgcli
           postgresql
           ripgrep
