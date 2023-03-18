@@ -25,7 +25,6 @@ in with lib; {
           enable_audio_bell = false;
           update_check_interval = 0;
           confirm_os_window_close = 0;
-        } ++ {
           ## Color Scheme
           ## name: Catppuccin
           ## author: Pocco81 (https://github.com/Pocco81)
