@@ -148,6 +148,19 @@ in with lib; {
                 "${pkgs.haskellPackages.greenclip}/bin/greenclip daemon";
             }
           ];
+          window.commands = [
+            {
+              command = "floating enabled ; sticky enabled ; border pixel 0";
+              criteria = {
+                class = "feh";
+                title = "float";
+              };
+            }
+            {
+              command =
+                "floating enabled ; sticky enabled ; border pixel 0; resize set width 40 ppt ; move position 60 ppt 70 ppt";
+              criteria = { class = "mpv"; };
+            }
           ];
         };
       };
