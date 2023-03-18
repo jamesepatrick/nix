@@ -7,8 +7,7 @@ let
     url = "https://github.com/jamesepatrick.keys";
     sha256 = "sha256-VGdWnlzD11L8fjoN/etmV50nHr5xrIP91BGV7x0Otks=";
   };
-in
-{
+in {
   options.my = {
     system.ssh.enable = mkOption {
       default = true;
@@ -20,8 +19,10 @@ in
     # Openssh settings for security
     services.openssh = {
       enable = true;
-      permitRootLogin = "no";
-      passwordAuthentication = false;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
     };
 
     users.users."${user.name}".openssh.authorizedKeys.keyFiles = [ publicKey ];

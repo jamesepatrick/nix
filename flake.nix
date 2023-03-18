@@ -14,10 +14,11 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs@{ self, emacs-overlay, home-manager, nixos-hardware, nixpkgs
-    , nur, utils, ... }:
+    , nur, utils, sops-nix, ... }:
     let
       inherit (utils.lib) mkFlake;
       inherit (self.lib.my) mapModules mapModulesRec';
@@ -48,7 +49,8 @@
             description = "James Patrick";
           };
         };
-        modules = mapModulesRec' ./modules import;
+        modules = mapModulesRec' ./modules import
+          ++ [ sops-nix.nixosModules.sops ];
         system = "x86_64-linux";
       };
     };
