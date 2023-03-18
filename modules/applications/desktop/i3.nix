@@ -43,6 +43,7 @@ in with lib; {
           i3blocks # if you are planning on using i3blocks over i3status
           i3lock # default i3 screen locker
           i3status # gives you the default i3 status bar
+          haskellPackages.greenclip
           playerctl
           scrot
           xclip
@@ -64,7 +65,6 @@ in with lib; {
           bars = [ ];
           colors = {
             focusedInactive = {
-
               background = "#1E1E2E";
               border = "#1E1E2E";
               childBorder = "#1E1E2E";
@@ -121,6 +121,8 @@ in with lib; {
             "${modifier}+shift+s" = "sticky toggle";
             "${modifier}+shift+f" = "floating toggle";
             "${modifier}+space" = "exec rofi -show drun";
+            "${modifier}+c" =
+              "exec rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'";
             Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             XF86AudioLowerVolume = "exec ${pkgs.volume-sh}/bin/volume.sh down";
             XF86AudioMute = "exec ${pkgs.volume-sh}/bin/volume.sh mute";
@@ -141,6 +143,11 @@ in with lib; {
             { command = "${pkgs.autotiling}/bin/autotiling"; }
             { command = "${pkgs.feh}/bin/feh --bg-center ${wallpaper}"; }
             { command = "systemctl --user restart polybar.service"; }
+            {
+              command =
+                "${pkgs.haskellPackages.greenclip}/bin/greenclip daemon";
+            }
+          ];
           ];
         };
       };
