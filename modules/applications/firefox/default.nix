@@ -2,11 +2,6 @@
 let
   cfg = config.my.application.firefox;
   graphical = config.my.graphical;
-  tridactylConfig = pkgs.fetchurl {
-    url =
-      "https://git.jpatrick.io/james/dotfiles/raw/branch/master/tridactyl/tridactylrc";
-    sha256 = "sha256-iOBd/yEvQP/Gn3+lS2Ztu9oslllZU4G7VnM4pTck+Tg=";
-  };
 in with lib; {
   options.my.application.firefox = {
     enable = mkOption {
@@ -78,9 +73,10 @@ in with lib; {
         };
       };
 
-      home.packages = with pkgs; [ tridactyl-native ];
+      home.packages = with pkgs; [ tridactyl-native qrencode ];
 
-      xdg.configFile."tridactyl/tridactylrc".source = tridactylConfig;
+      xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
+      xdg.configFile."tridactyl/themes".source = ./themes;
     };
   };
 }

@@ -1,0 +1,38 @@
+" Clear the config
+sanitise tridactyllocal tridactylsync
+
+alias tabuniq jsb browser.tabs.query({}).then(tabs => browser.tabs.remove(tabs.filter((tab, index) => tabs.slice(index + 1).find(t => t.url == tab.url)).map(tab => tab.id)))
+
+" match vimperators back/forward function.
+command ba back
+command fo foward
+bind h tabprev
+bind l tabnext
+
+" restore buildin bookmarks
+unbind <C-b>
+
+" Better find.
+unbind <C-f>
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
+
+" Settings
+set smoothscroll true
+set incsearch true
+
+" Use custom theme
+colorscheme onedark
+
+" Quick marks
+quickmark G https://github.com/
+quickmark g https://git.jpatrick.io/
+quickmark l https://lobste.rs/
+quickmark n https://news.ycombinator.com/
+
+" QR :: Turn current URL into QR code, and display using feh
+alias qr_url js let uri = document.location.href; tri.native.run("qrencode -o - '" + uri + "' | feh --zoom 200 --title float -")
+bind yq qr_url
