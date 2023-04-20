@@ -21,6 +21,8 @@ in with lib; {
             gnome-music
             iagno
             pomodoro
+            gnome-maps
+            pkgs.newsflash
           ];
           type = with types; listOf package;
         };
@@ -61,7 +63,6 @@ in with lib; {
           gnome-dictionary
           gnome-disk-utility
           gnome-font-viewer
-          gnome-maps
           gnome-screenshot
           gnome-session
           nautilus
@@ -71,7 +72,6 @@ in with lib; {
           sushi
         ] ++ optionals (this.extras.enable) this.extras.pkgs
         ++ optionals (power.enable) [ gnome-power-manager ]
-        ++ optionals (music.enable) [ gnome-music pkgs.tracker ]
         ++ optionals (mail.enable) [
           geary
           pkgs.evolution-data-server-gtk4
