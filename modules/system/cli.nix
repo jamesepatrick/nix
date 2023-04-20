@@ -9,6 +9,7 @@ in with lib; {
       };
       pkgs = mkOption {
         default = with pkgs; [
+          busybox
           file
           htop
           jq
