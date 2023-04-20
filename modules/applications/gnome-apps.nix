@@ -71,13 +71,17 @@ in with lib; {
           sushi
         ] ++ optionals (this.extras.enable) this.extras.pkgs
         ++ optionals (power.enable) [ gnome-power-manager ]
-        ++ optionals (mail.enable) [ geary ]
         ++ optionals (music.enable) [ gnome-music pkgs.tracker ]
+        ++ optionals (mail.enable) [
+          geary
+          pkgs.evolution-data-server-gtk4
+          pkgs.evolution
+        ] ++ optionals (music.enable) [ gnome-music pkgs.tracker ]
         ++ optionals (this.keyring.enable) [
           gnome-keyring
           libgnome-keyring
           seahorse
-        ] ++ [ pkgs.evolution-data-server-gtk4 pkgs.evolution ];
+        ];
 
       xdg.mimeApps = {
         enable = true;
