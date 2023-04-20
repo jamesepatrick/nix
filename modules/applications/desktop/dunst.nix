@@ -3,8 +3,7 @@ let
   this = config.my.application.dunst;
   i3 = config.my.application.i3;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.application.dunst.enable = mkOption {
       default = i3.enable;
@@ -71,8 +70,8 @@ with lib; {
           timeout = 10
 
         [urgency_critical]
-          background = "161720ee"
-          foreground = "#f5c2e7"
+          background = "#f5c2e7ee"
+          foreground = "#161720"
           timeout = 20
       '';
 
