@@ -15,6 +15,10 @@ in with lib; {
     services.picom = {
       enable = true;
       backend = "glx";
+      fade = true;
+      fadeDelta = 4;
+      inactiveOpacity = 0.9;
+      shadow = true;
       vSync = true;
     };
   };
