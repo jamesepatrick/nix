@@ -35,7 +35,8 @@ with lib; {
         partOf = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge";
+          ExecStart =
+            "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
