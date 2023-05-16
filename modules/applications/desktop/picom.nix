@@ -17,7 +17,7 @@ in with lib; {
       backend = "glx";
       fade = true;
       fadeDelta = 4;
-      inactiveOpacity = 0.9;
+      inactiveOpacity = 0.95;
       shadow = true;
       vSync = true;
     };
