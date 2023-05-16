@@ -75,7 +75,7 @@
     # Currently zfs-kernel is broken for latest & LTS is broken due to kernel
     # issues with the rtw89 firmware. The current work around is to ignore the
     # broken argument.
-    kernelPackages = pkgs.linuxPackages_latest.extend (final: prev: {
+    kernelPackages = pkgs.linuxPackages_6_1.extend (final: prev: {
       zfs = prev.zfs.overrideAttrs (_: { meta.broken = false; });
     });
     supportedFilesystems = [ "zfs" ];
