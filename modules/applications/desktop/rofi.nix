@@ -3,8 +3,7 @@ let
   this = config.my.application.i3.rofi;
   i3 = config.my.application.i3;
 
-in
-with lib; {
+in with lib; {
   options = {
     my.application.i3.rofi.enable = mkOption {
       default = i3.enable;

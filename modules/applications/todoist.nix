@@ -2,8 +2,7 @@
 let
   this = config.my.application.todoist;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.application.todoist.enable = mkOption {
       default = graphical.enable;
@@ -12,9 +11,10 @@ with lib; {
   };
 
   config = mkIf this.enable {
-    home-manager.users."${user.name}".home.packages = with pkgs; [
-      todoist
-      todoist-electron
-    ];
+    home-manager.users."${user.name}".home.packages = with pkgs;
+      [
+        todoist
+        # todoist-electron disabled due EOL of atom version
+      ];
   };
 }

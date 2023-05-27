@@ -39,20 +39,20 @@ in with lib; {
         enable = true;
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
+          arandr
+          autorandr
           feh
+          haskellPackages.greenclip
           i3blocks # if you are planning on using i3blocks over i3status
           i3lock # default i3 screen locker
           i3status # gives you the default i3 status bar
-          haskellPackages.greenclip
+          pavucontrol
           playerctl
           scrot
+          stalonetray
           xclip
           xdotool
           xorg.xrandr
-          autorandr
-          arandr
-          stalonetray
-          pavucontrol
         ];
       };
     };
