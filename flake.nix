@@ -1,6 +1,5 @@
 {
   description = "NixOS configuration";
-
   inputs = {
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
@@ -10,6 +9,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    scalpel = {
+      url = "github:polygon/scalpel";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        sops-nix.follows = "sops-nix";
+      };
+    };
+    sops-nix.url = "github:Mic92/sops-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
@@ -17,7 +24,7 @@
   };
 
   outputs = inputs@{ self, emacs-overlay, home-manager, nixos-hardware, nixpkgs
-    , nur, utils, ... }:
+    , nur, sops-nix, utils, ... }:
     let
       inherit (utils.lib) mkFlake;
       inherit (self.lib.my) mapModules mapModulesRec';
@@ -50,7 +57,8 @@
             description = "James Patrick";
           };
         };
-        modules = mapModulesRec' ./modules import;
+        modules = mapModulesRec' ./modules import
+          ++ [ sops-nix.nixosModules.sops ];
         system = "x86_64-linux";
       };
     };
