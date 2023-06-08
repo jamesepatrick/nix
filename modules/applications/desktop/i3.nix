@@ -123,6 +123,7 @@ in with lib; {
             "${modifier}+space" = "exec rofi -show drun";
             "${modifier}+c" =
               "exec rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'";
+            "${modifier}+Tab" = "exec rofi -show window";
             Pause = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             XF86AudioLowerVolume = "exec ${pkgs.volume-sh}/bin/volume.sh down";
             XF86AudioMute = "exec ${pkgs.volume-sh}/bin/volume.sh mute";
