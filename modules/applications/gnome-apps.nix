@@ -79,6 +79,7 @@ in with lib; {
             gnome-session
             nautilus
             nautilus-python
+            gnome-tweaks
             pkgs.gnome-menus
             pkgs.mate.mate-polkit
             sushi
