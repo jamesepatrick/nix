@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let this = config.my.system.boot;
-in
-with lib; {
+in with lib; {
   options.my.system.boot.enable = mkOption {
     default = true;
     type = with types; bool;
@@ -11,7 +10,7 @@ with lib; {
   config = mkIf this.enable {
     boot = {
       # Enable bootloader & clear /tmp on boot.
-      cleanTmpDir = true;
+      tmp.cleanOnBoot = true;
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
