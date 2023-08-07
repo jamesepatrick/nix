@@ -1,6 +1,7 @@
 { config, pkgs, lib, user, ... }:
 let
   cfg = config.my.application.firefox;
+  activitywatch = config.my.application.activitywatch;
   graphical = config.my.graphical;
 in with lib; {
   options.my.application.firefox = {
@@ -26,13 +27,14 @@ in with lib; {
           default = {
             name = "primary";
             id = 0;
-            extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-              #https-everywhere # Current disabled has its been removed from Rycee's Firefox Addons.
-              onepassword-password-manager
-              simple-tab-groups
-              tridactyl
-              ublock-origin
-            ];
+            extensions = with pkgs.nur.repos.rycee.firefox-addons;
+              [
+                #https-everywhere # Current disabled has its been removed from Rycee's Firefox Addons.
+                onepassword-password-manager
+                simple-tab-groups
+                tridactyl
+                ublock-origin
+              ] ++ optionals (activitywatch.enable) [ aw-watcher-web ];
             settings = {
               # Don't ask for download location
               "browser.download.useDownloadDir" = false;
