@@ -1,10 +1,6 @@
-# This is nil.
-# Nil is my currently my primary personal machine. It is a AMD Thinkpad T14 G2.
-# Specs can be can be found in hardware.nix
-
-{ self, config, lib, pkgs, modulesPath, ... }:
-
-{
+# This is nil; my primary personal machine.
+# It is a AMD Thinkpad T14 G2. Specs can be can be found in hardware.nix
+{ self, config, lib, pkgs, modulesPath, ... }: {
   imports = [
     ./hardware.nix
     ./configuration.nix
