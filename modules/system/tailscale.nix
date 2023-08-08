@@ -1,8 +1,6 @@
 { config, lib, pkgs, user, ... }:
-let
-  this = config.system.tailscale;
-in
-with lib; {
+let this = config.system.tailscale;
+in with lib; {
   options = {
     system.tailscale.enable = mkOption {
       default = true;
@@ -10,7 +8,5 @@ with lib; {
     };
   };
 
-  config = mkIf this.enable {
-    services.tailscale.enable = true;
-  };
+  config = mkIf this.enable { services.tailscale.enable = true; };
 }
