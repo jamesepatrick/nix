@@ -6,7 +6,11 @@ in with lib; {
   config = mkIf this.enable {
 
     # battery optimizations
-    powerManagement.powertop.enable = true;
+    powerManagement = {
+      powertop.enable = true;
+      cpuFreqGovernor = lib.mkDefault "powersave";
+    };
+
     services.upower.enable = true;
 
     environment.systemPackages = with pkgs; [ poweralertd powertop ];
