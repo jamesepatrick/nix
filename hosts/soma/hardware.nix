@@ -36,15 +36,15 @@
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
-    "/mnt/tv " = {
+    "/mnt/tv" = {
       device = "/dev/disk/by-label/tv";
       fsType = "ext4";
     };
-    "/mnt/movies " = {
+    "/mnt/movies" = {
       device = "/dev/disk/by-label/movies";
       fsType = "ext4";
     };
-    "/mnt/misc " = {
+    "/mnt/misc" = {
       device = "/dev/disk/by-label/misc";
       fsType = "ext4";
     };
