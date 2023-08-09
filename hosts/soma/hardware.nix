@@ -1,6 +1,7 @@
 { self, config, nixos-hardware, lib, pkgs, modulesPath, ... }: {
   imports = [ nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2 ];
 
+  my.system.btrfs.enable = true;
   networking = {
     hostName = "soma";
     useDHCP = false;
@@ -34,6 +35,22 @@
     "/boot" = {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
+    };
+    "/mnt/tv " = {
+      device = "/dev/disk/by-label/tv";
+      fsType = "ext4";
+    };
+    "/mnt/movies " = {
+      device = "/dev/disk/by-label/movies";
+      fsType = "ext4";
+    };
+    "/mnt/misc " = {
+      device = "/dev/disk/by-label/misc";
+      fsType = "ext4";
+    };
+    "/mnt/cache" = {
+      device = "/dev/disk/by-label/cache";
+      fsType = "btrfs";
     };
   };
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
