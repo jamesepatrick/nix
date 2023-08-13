@@ -38,15 +38,15 @@
     };
     "/mnt/tv" = {
       device = "/dev/disk/by-label/tv";
-      fsType = "ext4";
+      fsType = "btrfs";
     };
     "/mnt/movies" = {
       device = "/dev/disk/by-label/movies";
-      fsType = "ext4";
+      fsType = "btrfs";
     };
     "/mnt/misc" = {
       device = "/dev/disk/by-label/misc";
-      fsType = "ext4";
+      fsType = "btrfs";
     };
     "/mnt/cache" = {
       device = "/dev/disk/by-label/cache";
