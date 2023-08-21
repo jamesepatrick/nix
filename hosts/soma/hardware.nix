@@ -57,9 +57,9 @@
   # ├── sdc1     btrfs    misc      3.2T     /mnt/misc
   # └── sdc2     ????     raid      500G      ?????
   # sdd
-  # └── sdd1     btrfs    tv        3.6T     /mnt/tv
+  # └── sdd1     btrfs    tv_old    3.6T
   # sde
-  # └── sde1     btrfs    tv_new    14.6T
+  # └── sde1     btrfs    tv        14.6T    /mnt/tv
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/root";
