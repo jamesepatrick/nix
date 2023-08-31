@@ -1,5 +1,6 @@
 # Build Specs
 # ###############################################################################
+# Serial: PF2RDFYF
 # Onboard Memory: 16 GB DDR4 3200MHz (Soldered) Note: This can support another stick of RAM.
 # Wireless: Realtek 8852AE 802.11AX (2 x 2) & Bluetooth® 5.2
 # Processor: AMD Ryzen™ 5 Pro 5650U Processor (2.30 GHz, up to 4.20 GHz Max Boost, 6 Cores, 12 Threads, 16 MB Cache)
