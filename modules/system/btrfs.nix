@@ -5,6 +5,6 @@ in with lib; {
 
   config = mkIf this.enable {
     services.btrfs.autoScrub.enable = true;
-    environment.systemPackages = with pkgs; [ btrfs-progs compsize dduper ];
+    environment.systemPackages = with pkgs; [ btrfs-progs compsize ];
   };
 }
