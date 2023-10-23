@@ -2,8 +2,7 @@
 let
   this = config.my.application.gammastep;
   i3 = config.my.application.i3;
-in
-with lib; {
+in with lib; {
   options = {
     my.application.gammastep.enable = mkOption {
       default = i3.enable;
@@ -14,8 +13,10 @@ with lib; {
   config = mkIf this.enable {
     home-manager.users."${user.name}" = {
       services.gammastep = {
+        latitude = "40.00";
+        longitude = "-86.1";
         enable = true;
-        provider = "geoclue2";
+        provider = "manual";
         tray = true;
       };
     };
