@@ -11,6 +11,7 @@ in with lib; {
         default = with pkgs; [
           busybox
           file
+          fzf
           htop
           jq
           ncdu
