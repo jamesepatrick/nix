@@ -19,7 +19,7 @@ in with lib; {
 
     home-manager.users."${user.name}" = {
       programs.emacs = {
-        package = pkgs.emacs28NativeComp;
+        package = pkgs.emacs29-gtk3;
         enable = true;
         extraPackages = epkgs: [ epkgs.vterm ];
       };
