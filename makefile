@@ -16,8 +16,6 @@ switch:
 		notify-send -u low "완료 Switch Completed" "returned value $${result}"
 	fi
 
-
-
 dry:
 	nixos-rebuild dry-build --flake .
 	result="$$?"
