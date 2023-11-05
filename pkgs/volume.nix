@@ -32,11 +32,11 @@ in pkgs.writeShellScriptBin "volume.sh" ''
 
   case $1 in
     up)
-      pactl set-sink-volume @DEFAULT_SINK@ +5% ; notify ;;
+      wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ ; notify ;;
     down)
-      pactl set-sink-volume @DEFAULT_SINK@ -5% ; notify ;;
+      wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ; notify ;;
     mute)
-      amixer set Master toggle > /dev/null ; notify ;;
+      wpctl set-mute @DEFAULT_AUDIO_SINK@ ; notify ;;
     *)
       echo "invalid command"
       ;;
