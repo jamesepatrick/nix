@@ -3,8 +3,8 @@ let graphical = config.my.graphical;
 in {
   config = lib.mkIf graphical.enable {
     fonts = {
-      enableDefaultFonts = true;
-      fonts = with pkgs; [
+      enableDefaultPackages = true;
+      packages = with pkgs; [
         etBook
         alegreya
         fira-code
