@@ -2,8 +2,7 @@
 let
   this = config.my.application.kdeconnect;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.application.kdeconnect.enable = mkOption {
       default = graphical.enable;
@@ -13,7 +12,6 @@ with lib; {
 
   config = mkIf this.enable {
     programs.kdeconnect.enable = true;
-
     systemd.user.services = {
       kdeconnect = {
         enable = true;
@@ -22,7 +20,8 @@ with lib; {
         partOf = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator";
+          ExecStart =
+            "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;

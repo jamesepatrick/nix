@@ -4,7 +4,6 @@ in with lib; {
   options.my.system.power.enable = mkEnableOption "Power Management";
 
   config = mkIf this.enable {
-
     # battery optimizations
     powerManagement = {
       powertop.enable = true;

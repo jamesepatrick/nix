@@ -23,7 +23,6 @@ in with lib; {
             iagno
             pomodoro
             gnome-maps
-            pkgs.newsflash
           ];
           type = with types; listOf package;
         };

@@ -12,11 +12,7 @@ in with lib; {
 
   config = mkIf this.enable {
     services.flatpak.enable = true;
-    xdg.portal = {
-      enable = true;
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-    };
+    xdg.portal = { enable = true; };
   };
 
 }
