@@ -16,11 +16,13 @@ in with lib; {
           fzf
           htop
           jq
+          just
           ncdu
           pgcli
           postgresql
           ripgrep
           silver-searcher
+          tailspin
           tmux
         ];
         type = with types; listOf package;
