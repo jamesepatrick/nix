@@ -15,14 +15,14 @@ in with lib; {
           type = with types; bool;
         };
         pkgs = mkOption {
-          default = with pkgs.gnome; [
+          default = with pkgs; [
             cheese
             file-roller
             gnome-boxes
             gnome-music
             iagno
-            pomodoro
             gnome-maps
+            gnome-pomodoro
           ];
           type = with types; listOf package;
         };
@@ -62,7 +62,7 @@ in with lib; {
       ];
 
       home-manager.users."${user.name}" = {
-        home.packages = with pkgs.gnome;
+        home.packages = with pkgs;
           [
             gnome-bluetooth
             gnome-calendar
@@ -71,16 +71,16 @@ in with lib; {
             gnome-common
             gnome-contacts
             gnome-control-center
-            gnome-dictionary
             gnome-disk-utility
             gnome-font-viewer
             gnome-screenshot
             gnome-session
+            gnome-tweaks
             nautilus
             nautilus-python
-            gnome-tweaks
             pkgs.gnome-menus
             pkgs.mate.mate-polkit
+            pkgs.wordbook
             sushi
           ] ++ optionals (this.extras.enable) this.extras.pkgs
           ++ optionals (power.enable) [ gnome-power-manager ]

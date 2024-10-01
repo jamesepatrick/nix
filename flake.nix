@@ -12,7 +12,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.4.0";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.5.1";
   };
 
   outputs = inputs@{ self, emacs-overlay, home-manager, nixos-hardware, nixpkgs

@@ -22,7 +22,6 @@ in with lib; {
         nodePackages.js-beautify
         nodePackages.npm
         nodePackages.stylelint
-        nodePackages.vue-cli
         nodejs
         yarn
       ];
