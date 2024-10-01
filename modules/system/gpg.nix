@@ -19,10 +19,14 @@ with lib; {
     programs = {
       gnupg.agent = {
         enable = true;
-        pinentryFlavor = if graphical.enable then "gnome3" else "curses";
-      };
-    };
 
+        pinentryPackage = if graphical.enable then
+          pkgs.pinentry-gnome3
+        else
+          pkgs.pinentry-curses;
+      };
+
+    };
 
     home-manager.users."${user.name}" = {
       programs.gpg = {
