@@ -21,7 +21,6 @@ in with lib; {
       home.packages = with pkgs; [
         air
         delve
-        gocode
         golangci-lint
         gomodifytags
         gopls

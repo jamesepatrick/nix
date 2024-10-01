@@ -34,7 +34,7 @@ in with lib; {
         html-tidy
         lldb
         pandoc
-        python38
+        python3
         ripgrep
         sqlite
         wordnet
