@@ -10,7 +10,6 @@ in with lib; {
     };
   };
 
-  config = mkIf this.enable {
-    environment.systemPackages = with pkgs; [ nixfmt rnix-lsp ];
-  };
+  config =
+    mkIf this.enable { environment.systemPackages = with pkgs; [ nixfmt ]; };
 }
