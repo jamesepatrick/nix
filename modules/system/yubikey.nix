@@ -28,7 +28,7 @@ in with lib; {
     }
     (mkIf graphical.enable {
 
-      environment.systemPackages = with pkgs; [ pinentry-gnome ];
+      environment.systemPackages = with pkgs; [ pinentry-gnome3 ];
 
       home-manager.users."${user.name}".home = {
         packages = with pkgs; [
