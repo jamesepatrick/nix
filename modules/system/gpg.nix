@@ -2,8 +2,7 @@
 let
   this = config.my.system.gpg;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options.my.system.gpg.enable = mkOption {
     default = true;
     type = with types; bool;
@@ -37,8 +36,20 @@ with lib; {
           # https://www.gnupg.org/documentation/manuals/gnupg/GPG-Esoteric-Options.html
           personal-cipher-preferences = [ "AES256" "AES192" "AES" ];
           personal-digest-preferences = [ "SHA512" "SHA384" "SHA256" ];
-          personal-compress-preferences = [ "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
-          default-preference-list = [ "SHA512" "SHA384" "SHA256" "AES256" "AES192" "AES" "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
+          personal-compress-preferences =
+            [ "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
+          default-preference-list = [
+            "SHA512"
+            "SHA384"
+            "SHA256"
+            "AES256"
+            "AES192"
+            "AES"
+            "ZLIB"
+            "BZIP2"
+            "ZIP"
+            "Uncompressed"
+          ];
           # SHA512 as digest to sign keys
           cert-digest-algo = "SHA512";
           # SHA512 as digest for symmetric ops
