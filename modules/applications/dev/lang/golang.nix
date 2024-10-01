@@ -2,8 +2,7 @@
 let
   this = config.my.lang.golang;
   graphical = config.my.graphical;
-in
-with lib; {
+in with lib; {
   options = {
     my.lang.golang.enable = mkOption {
       default = graphical.enable;
